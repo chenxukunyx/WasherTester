@@ -27,6 +27,11 @@ public class MyService extends UMBaseControlService {
     }
 
     @Override
+    protected void onSerialReceived(UMDB db) {
+        super.onSerialReceived(db);
+    }
+
+    @Override
     public void update(String key, String value) throws RemoteException {
 
     }

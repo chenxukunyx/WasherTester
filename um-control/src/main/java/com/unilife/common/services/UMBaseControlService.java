@@ -146,15 +146,7 @@ public abstract class UMBaseControlService extends Service implements IControlSe
 
     protected void onSerialPreWrite(UMDB db){}
     protected void onSerialReceived(UMDB db){
-        //降低传感器温度上报频率
-        if (System.currentTimeMillis() - m_curTime > 10*1000
-                || System.currentTimeMillis() < m_curTime) {
-            m_curTime = System.currentTimeMillis();
-            // 上报传感器温度
-        } else {
-            // 不上报传感器温度
-            db.removeValues(m_sensorTemps);
-        }
+
     }
 
     protected void onRemoteCtrlReceived(UMDB db) {}
@@ -172,7 +164,7 @@ public abstract class UMBaseControlService extends Service implements IControlSe
                 /**
                  * 收到串口数据，更新串口数据db
                  */
-                //onSerialReceived(db);
+                onSerialReceived(db);
                 //wanql edit true
                 StatusManager.getInstance().flushDB(db, false, StatusManager.FROM_SERIAl);
             }

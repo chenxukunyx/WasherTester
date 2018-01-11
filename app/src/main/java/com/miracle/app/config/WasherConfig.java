@@ -21,18 +21,6 @@ import java.util.List;
 public class WasherConfig extends BaseWasherConfig {
 
     private static final String TAG = "WasherConfig";
-    private static BaseWasherConfig mInstance;
-
-    public static BaseWasherConfig getmInstance() {
-        if (mInstance == null) {
-            synchronized (WasherConfig.class) {
-                if (mInstance == null) {
-                    mInstance = new WasherConfig();
-                }
-            }
-        }
-        return mInstance;
-    }
 
     static BaseWasherConfig mWasherConfig = new WolongWasherConfig();
     static List<BaseWasherConfig> mWasherConfigList;
