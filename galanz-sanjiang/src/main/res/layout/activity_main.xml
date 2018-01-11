@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_homepage">
+
+    <TextView
+        android:id="@+id/tv_voltage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px70"
+        android:layout_marginTop="@dimen/px70"
+        android:text="0v"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"/>
+
+    <TextView
+        android:id="@+id/tv_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px70"
+        android:layout_marginTop="@dimen/px240"
+        android:text="0w"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"/>
+
+    <TextView
+        android:id="@+id/tv_electricity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px70"
+        android:layout_marginTop="@dimen/px438"
+        android:text="0A"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"/>
+
+    <TextView
+        android:id="@+id/tv_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/px70"
+        android:layout_marginTop="@dimen/px70"
+        android:text="0°"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"/>
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/px110"
+        android:layout_marginTop="@dimen/px290"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"/>
+
+    <TextView
+        android:id="@+id/tv_rpm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="0v"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"/>
+
+    <TextView
+        android:id="@+id/tipTextView"
+        android:layout_width="@dimen/px300"
+        android:layout_height="@dimen/px100"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px23"
+        android:background="@drawable/shape_tip_bg"
+        android:gravity="center"
+        android:textColor="@color/tip_text_color"
+        android:textSize="@dimen/px30"
+        android:visibility="gone"/>
+
+    <com.unilife.variety.widget.RotateImageView
+        android:id="@+id/rotateImageView"
+        android:layout_width="@dimen/px314"
+        android:layout_height="@dimen/px314"
+        android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_low_rpm"
+            android:layout_width="@dimen/px100"
+            android:layout_height="@dimen/px80"
+            android:layout_marginBottom="@dimen/px10"
+            android:layout_marginTop="@dimen/px5"
+            android:background="@drawable/shape_button_bg"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px30"/>
+
+        <Button
+            android:id="@+id/btn_high_rpm"
+            android:layout_width="@dimen/px100"
+            android:layout_height="@dimen/px80"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/px10"
+            android:layout_marginLeft="@dimen/px15"
+            android:layout_marginTop="@dimen/px5"
+            android:background="@drawable/shape_button_bg"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px30"/>
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="@dimen/px100"
+            android:layout_height="@dimen/px80"
+            android:layout_marginBottom="@dimen/px10"
+            android:layout_marginLeft="@dimen/px15"
+            android:layout_marginTop="@dimen/px5"
+            android:background="@drawable/shape_button_bg"
+            android:text="停止"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px30"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/setting"
+        android:layout_width="@dimen/px319"
+        android:layout_height="@dimen/px152"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/px12"
+        android:layout_marginRight="@dimen/px28"
+        android:background="@drawable/selector_setting"
+        android:clickable="true"/>
+
+    <Button
+        android:id="@+id/btn_set_rpm_left"
+        android:layout_width="@dimen/px200"
+        android:layout_height="@dimen/px150"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"/>
+
+    <Button
+        android:id="@+id/btn_set_rpm_right"
+        android:layout_width="@dimen/px200"
+        android:layout_height="@dimen/px150"
+        android:layout_alignParentRight="true"
+        android:background="@color/transparent"/>
+</RelativeLayout>

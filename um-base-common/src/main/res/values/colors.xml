@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="edit_solid">#CCDDFF</color>
+    <color name="edit_bg">#00000000</color>
+    <color name="edit_hint">#aaaaaa</color>
+    <color name="tip_bg">#EEFBED20</color>
+    <color name="tip_border">#F5F5F5</color>
+    <color name="tip_text_color">#000000</color>
+    <color name="black">#000</color>
+</resources>

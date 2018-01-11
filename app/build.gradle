@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+
+    defaultConfig {
+        applicationId "com.miracle.app"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1000001//第一个零为三江版本(1为新安版本)  第二个零代表电机厂商版本
+        versionName "1.0.1.001"//0:galanz 1:wolong
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //    signingConfigs {
+//        release {
+//            storeFile file("../key.jks")
+//            storePassword "washer!@#\$%^"
+//            keyAlias "app"
+//            keyPassword "washer!@#\$%^"
+//        }
+//
+//        debug {
+//            storeFile file("../key.jks")
+//            storePassword "washer!@#\$%^"
+//            keyAlias "app"
+//            keyPassword "washer!@#\$%^"
+//        }
+//    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile project(':um-base-common')
+}

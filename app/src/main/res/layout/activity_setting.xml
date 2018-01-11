@@ -1,0 +1,516 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_setting">
+
+    <!--标题-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px55"
+        android:layout_marginLeft="@dimen/px220"
+        android:layout_marginTop="@dimen/px55"
+        android:gravity="center_vertical"
+        android:text="@string/setting_title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px36"/>
+
+    <!--返回-->
+    <Button
+        android:id="@+id/back"
+        android:layout_width="@dimen/px180"
+        android:layout_height="@dimen/px74"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/transparent"
+        android:clickable="true"/>
+
+    <!--设置-->
+    <Button
+        android:id="@+id/setConfig"
+        android:layout_width="@dimen/px160"
+        android:layout_height="@dimen/px70"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/back"
+        android:background="@color/transparent"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/px45"
+        android:layout_marginTop="@dimen/px32"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/saveConfig"
+            android:layout_width="@dimen/px172"
+            android:layout_height="@dimen/px98"
+            android:background="@drawable/selector_save_config"
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/loadConfig"
+            android:layout_width="@dimen/px172"
+            android:layout_height="@dimen/px98"
+            android:layout_marginLeft="@dimen/px36"
+            android:background="@drawable/selector_load_config"
+            android:clickable="true"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/px670"
+        android:layout_height="@dimen/px290"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="@dimen/px80"
+        android:layout_marginTop="@dimen/px161"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/px200"
+            android:layout_height="@dimen/px290"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58">
+
+                <TextView
+                    android:layout_width="@dimen/px190"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="电压阈值"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58">
+
+                <TextView
+                    android:layout_width="@dimen/px190"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="电流阈值"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58">
+
+                <TextView
+                    android:layout_width="@dimen/px190"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="低速功率阈值"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58">
+
+                <TextView
+                    android:layout_width="@dimen/px190"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="高速功率阈值"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58">
+
+                <TextView
+                    android:layout_width="@dimen/px190"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="温度阈值"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/px200"
+            android:layout_height="@dimen/px290"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最小值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/minVoltageEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最小值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/minElectricityEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最小值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/minLowerPowerEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最小值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/minHigherPowerEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:enabled="false"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最小值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/minTemperatureEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/px200"
+            android:layout_height="@dimen/px290"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最大值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/maxVoltageEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最大值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/maxElectricityEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最大值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/maxLowerPowerEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最大值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/maxHigherPowerEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:enabled="false"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px58"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px58"
+                    android:gravity="center_vertical"
+                    android:text="最大值:"
+                    android:textSize="@dimen/px25"/>
+
+                <EditText
+                    android:id="@+id/maxTemperatureEdit"
+                    android:layout_width="@dimen/px100"
+                    android:layout_height="@dimen/px50"
+                    android:background="@drawable/edit_bg"
+                    android:hint="请输入"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/px10"
+                    android:text="0"
+                    android:textColorHint="@color/edit_hint"
+                    android:textSize="@dimen/px30"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/px70"
+            android:layout_height="@dimen/px290"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="@dimen/px70"
+                android:layout_height="@dimen/px58"
+                android:gravity="center_vertical"
+                android:text="  V"
+                android:textSize="@dimen/px25"/>
+
+            <TextView
+                android:layout_width="@dimen/px70"
+                android:layout_height="@dimen/px58"
+                android:gravity="center_vertical"
+                android:text="  mA"
+                android:textSize="@dimen/px25"/>
+
+            <TextView
+                android:layout_width="@dimen/px70"
+                android:layout_height="@dimen/px58"
+                android:gravity="center_vertical"
+                android:text="  W"
+                android:textSize="@dimen/px25"/>
+
+            <TextView
+                android:layout_width="@dimen/px70"
+                android:layout_height="@dimen/px58"
+                android:gravity="center_vertical"
+                android:text="  W"
+                android:textSize="@dimen/px25"/>
+
+            <TextView
+                android:layout_width="@dimen/px70"
+                android:layout_height="@dimen/px58"
+                android:gravity="center_vertical"
+                android:text="  ℃"
+                android:textSize="@dimen/px25"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/px200"
+        android:layout_marginRight="@dimen/px29"
+        android:layout_marginTop="@dimen/px170"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="版本:"
+            android:textSize="@dimen/px30"/>
+
+        <EditText
+            android:id="@+id/versionEdit"
+            android:layout_width="@dimen/px100"
+            android:layout_height="@dimen/px50"
+            android:layout_marginLeft="@dimen/px5"
+            android:background="@drawable/edit_bg"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:paddingLeft="@dimen/px10"
+            android:text="0"
+            android:textColor="@color/edit_hint"
+            android:textColorHint="@color/edit_hint"
+            android:textSize="@dimen/px30"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/px200"
+        android:layout_marginRight="@dimen/px29"
+        android:layout_marginTop="@dimen/px230"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="传动比:"
+            android:textSize="@dimen/px25"/>
+
+        <EditText
+            android:id="@+id/driveRatioEdit"
+            android:layout_width="@dimen/px100"
+            android:layout_height="@dimen/px50"
+            android:layout_marginLeft="@dimen/px5"
+            android:background="@drawable/edit_bg"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:paddingLeft="@dimen/px10"
+            android:textColor="@color/edit_hint"
+            android:textColorHint="@color/edit_hint"
+            android:textSize="@dimen/px30"/>
+    </LinearLayout>
+</RelativeLayout>

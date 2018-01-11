@@ -1,0 +1,169 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_homepage">
+
+    <!--电压-->
+    <TextView
+        android:id="@+id/voltage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px100"
+        android:layout_marginLeft="@dimen/px30"
+        android:paddingLeft="@dimen/px20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"
+        android:gravity="center_vertical"
+        android:text="0 V"/>
+
+    <!--功率-->
+    <TextView
+        android:id="@+id/power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px280"
+        android:layout_marginLeft="@dimen/px30"
+        android:paddingLeft="@dimen/px20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"
+        android:gravity="center_vertical"
+        android:text="0 W"/>
+
+    <!--电流-->
+    <TextView
+        android:id="@+id/electricity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px455"
+        android:layout_marginLeft="@dimen/px30"
+        android:paddingLeft="@dimen/px20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"
+        android:gravity="center_vertical"
+        android:text="0 A"/>
+
+    <!--温度-->
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px100"
+        android:layout_marginRight="@dimen/px30"
+        android:layout_alignParentRight="true"
+        android:paddingRight="@dimen/px20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"
+        android:gravity="right"
+        android:text="0 ℃"/>
+
+    <!--版本-->
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px280"
+        android:layout_marginRight="@dimen/px30"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"
+        android:paddingRight="@dimen/px100"
+        android:gravity="center_vertical"
+        android:text="0"/>
+
+    <!--设置-->
+    <ImageView
+        android:id="@+id/setting"
+        android:layout_width="@dimen/px319"
+        android:layout_height="@dimen/px152"
+        android:background="@drawable/selector_setting"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/px28"
+        android:layout_marginBottom="@dimen/px12"
+        android:clickable="true"/>
+
+    <!--提示信息-->
+    <ImageView
+        android:id="@+id/tip"
+        android:layout_width="@dimen/px404"
+        android:layout_height="@dimen/px69"
+        android:layout_marginTop="@dimen/px30"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/error_info"
+        android:visibility="gone"/>
+
+    <!--转速-->
+    <TextView
+        android:id="@+id/rpm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px40"
+        android:text="0"/>
+
+
+
+    <!--底部按钮-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/px12"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="@dimen/px157"
+            android:layout_height="@dimen/px125"
+            android:clickable="true"
+            android:background="@drawable/selector_reset"/>
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="@dimen/px157"
+            android:layout_height="@dimen/px125"
+            android:clickable="true"
+            android:layout_marginLeft="@dimen/px20"
+            android:background="@drawable/selector_start"/>
+        <!--<Button-->
+            <!--android:id="@+id/speed_1000"-->
+            <!--android:layout_width="@dimen/px120"-->
+            <!--android:layout_height="@dimen/px100"-->
+            <!--android:layout_marginLeft="@dimen/px10"-->
+            <!--android:clickable="true"-->
+            <!--android:text="1000转"-->
+            <!--android:textSize="@dimen/px20"-->
+            <!--android:layout_gravity="bottom"/>-->
+        <!--<Button-->
+            <!--android:id="@+id/speed_1400"-->
+            <!--android:layout_width="@dimen/px120"-->
+            <!--android:layout_height="@dimen/px100"-->
+            <!--android:layout_marginLeft="@dimen/px10"-->
+            <!--android:clickable="true"-->
+            <!--android:text="1250转"-->
+            <!--android:textSize="@dimen/px20"-->
+            <!--android:layout_gravity="bottom"/>-->
+    </LinearLayout>
+
+    <com.miracle.um_base_common.view.RotateImageView
+        android:id="@+id/rotateImageView"
+        android:layout_width="@dimen/px314"
+        android:layout_height="@dimen/px314"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/tipTextView"
+        android:layout_width="@dimen/px300"
+        android:layout_height="@dimen/px100"
+        android:background="@drawable/shape_tip_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px20"
+        android:gravity="center"
+        android:textSize="@dimen/px30"
+        android:textColor="@color/tip_text_color"
+        android:visibility="gone"/>
+</RelativeLayout>

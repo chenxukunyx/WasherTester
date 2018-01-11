@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="@dimen/px751"
+        android:layout_height="@dimen/px328"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px164"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px30"
+                android:text="低速"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+
+            <EditText
+                android:id="@+id/et_low"
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px80"
+                android:layout_marginLeft="@dimen/px150"
+                android:background="@drawable/shape_button_bg"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="@dimen/px150"
+                android:layout_height="@dimen/px80"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/px50"
+                android:background="@drawable/shape_button_bg"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/px164"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px30"
+                android:text="高速"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+
+            <EditText
+                android:id="@+id/et_high"
+                android:layout_width="@dimen/px200"
+                android:layout_height="@dimen/px80"
+                android:layout_marginLeft="@dimen/px150"
+                android:background="@drawable/shape_button_bg"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="@dimen/px150"
+                android:layout_height="@dimen/px80"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/px50"
+                android:background="@drawable/shape_button_bg"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

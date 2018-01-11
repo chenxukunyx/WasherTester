@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="edit_solid">#CCDDFF</color>
+    <color name="edit_bg">#00000000</color>
+    <color name="edit_hint">#aaaaaa</color>
+    <color name="tip_bg">#EEFBED20</color>
+    <color name="tip_border">#F5F5F5</color>
+    <color name="tip_text_color">#000000</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+</resources>
