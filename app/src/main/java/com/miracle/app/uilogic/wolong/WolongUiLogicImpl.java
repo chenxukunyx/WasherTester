@@ -5,8 +5,8 @@ import android.text.TextUtils;
 
 import com.miracle.app.model.WolongModel;
 import com.miracle.um_base_common.base.BaseUiLogicImpl;
-import com.miracle.um_base_common.listener.OnNewUmdbListener;
-import com.miracle.um_base_common.model.BaseModel;
+import com.miracle.um_base_common.util.StringUtils;
+import com.miracle.um_base_common.util.UMTimer;
 import com.miracle.um_base_common.view.RotateImageView;
 import com.unilife.common.entities.UMDB;
 
@@ -25,6 +25,10 @@ import java.util.Map;
 public class WolongUiLogicImpl extends BaseUiLogicImpl {
 
     private WolongModel mModel;
+    private boolean running;
+    private static final String TIMER_CCW = "TIMER_CCW";
+    private static final String TIMER_STOP = "TIMER_STOP";
+
     public WolongUiLogicImpl(Activity activity, RotateImageView rotateImageView) {
         super(activity, rotateImageView);
         mModel = new WolongModel();
@@ -136,6 +140,7 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
     }
 
     public void start(int rpm) {
+        running = true;
         checkCmd();
         if (rpm > 0) {
             onSendCmd(mModel.getSpeedSetCmd(rpm), mRotateImageView, CW);
@@ -147,10 +152,26 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
     }
 
     public void stop() {
+        running = false;
         onSendCmd(mModel.getStopCmd(), mRotateImageView, NONE);
+        onSendCmd(mModel.getFTCTestCmd(), mRotateImageView, NONE);
+        UMTimer.getInstance().stopTimer(TIMER_CCW);
+        UMTimer.getInstance().stopTimer(TIMER_STOP);
     }
 
-    public void cycle() {
-
+    public void cycle(int cwspeed, int cwtime, final int ccwspeed, int ccwtime) {
+        start(cwspeed);
+        UMTimer.getInstance().startTimer(TIMER_CCW, cwtime * 1000, 1, new UMTimer.UMTimerOutListener() {
+            @Override
+            public void UMTimeOut(String name) {
+                start(-ccwspeed);
+            }
+        });
+        UMTimer.getInstance().startTimer(TIMER_STOP, (cwtime + ccwtime) * 1000, 1, new UMTimer.UMTimerOutListener() {
+            @Override
+            public void UMTimeOut(String name) {
+                stop();
+            }
+        });
     }
 }

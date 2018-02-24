@@ -234,4 +234,100 @@
         android:textColor="@color/tip_text_color"
         android:textSize="@dimen/px30"
         android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/ll_cycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px20"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正转速度"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20"/>
+
+            <EditText
+                android:id="@+id/et_cw_speed"
+                android:layout_width="@dimen/px100"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px10"
+                android:background="@drawable/edit_bg"
+                android:inputType="number"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px26"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px25"
+                android:text="正转时间"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20"/>
+
+            <EditText
+                android:id="@+id/et_cw_time"
+                android:layout_width="@dimen/px100"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px10"
+                android:background="@drawable/edit_bg"
+                android:inputType="number"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px26"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/px20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="反转速度"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20"/>
+
+            <EditText
+                android:id="@+id/et_ccw_speed"
+                android:layout_width="@dimen/px100"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px10"
+                android:background="@drawable/edit_bg"
+                android:inputType="number"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px26"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px25"
+                android:text="反转时间"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20"/>
+
+            <EditText
+                android:id="@+id/et_ccw_time"
+                android:layout_width="@dimen/px100"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px10"
+                android:background="@drawable/edit_bg"
+                android:inputType="number"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px26"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

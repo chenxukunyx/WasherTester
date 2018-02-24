@@ -27,6 +27,11 @@ public class MyService extends UMBaseControlService {
     }
 
     @Override
+    protected int onStatusInit(UMDB db) {
+        return super.onStatusInit(db);
+    }
+
+    @Override
     protected void onSerialReceived(UMDB db) {
         super.onSerialReceived(db);
     }

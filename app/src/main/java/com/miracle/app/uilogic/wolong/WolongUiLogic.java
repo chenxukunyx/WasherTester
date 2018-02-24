@@ -1,8 +1,10 @@
 package com.miracle.app.uilogic.wolong;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,6 +13,8 @@ import com.miracle.app.base.BaseHomeUiLogic;
 import com.miracle.um_base_common.listener.OnNewUmdbListener;
 import com.miracle.um_base_common.view.RotateImageView;
 import com.unilife.common.entities.UMDB;
+import com.unilife.common.utils.SharedPrefUtils;
+import com.unilife.common.utils.StringUtils;
 
 /**
  * Created with Android Studio
@@ -43,6 +47,17 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     private RotateImageView mRotateImageView;
     private TextView mTipTextView;
 
+    private LinearLayout mLlCycle;
+    private EditText mEtCwSpeed;
+    private EditText mEtCwTime;
+    private EditText mEtCcwSpeed;
+    private EditText mEtCcwTime;
+
+    private static final String CWSPEED  = "CWSPEED";
+    private static final String CWTIME  = "CWTIME";
+    private static final String CCWSPEED  = "CCWSPEED";
+    private static final String CCWTIME  = "CCWTIME";
+
 
     public WolongUiLogic(Activity activity) {
         super(activity);
@@ -70,6 +85,16 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         mBtnStop = findViewById(R.id.btn_stop);
         mRotateImageView = findViewById(R.id.rotateImageView);
         mTipTextView = findViewById(R.id.tipTextView);
+
+        mLlCycle = findViewById(R.id.ll_cycle);
+        mEtCwSpeed = findViewById(R.id.et_cw_speed);
+        mEtCwTime = findViewById(R.id.et_cw_time);
+        mEtCcwSpeed = findViewById(R.id.et_ccw_speed);
+        mEtCcwTime = findViewById(R.id.et_ccw_time);
+        mEtCwSpeed.setText(SharedPrefUtils.getData(CWSPEED, 200) + "");
+        mEtCwTime.setText(SharedPrefUtils.getData(CWTIME, 20) + "");
+        mEtCcwSpeed.setText(SharedPrefUtils.getData(CCWSPEED, 200) + "");
+        mEtCcwTime.setText(SharedPrefUtils.getData(CCWTIME, 20) + "");
     }
 
     private void initEvent() {
@@ -129,19 +154,54 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     }
 
     private void cycle() {
-        mWolongUiLogicImpl.cycle();
+        int cwspeed = StringUtils.parseInt(mEtCwSpeed.getText().toString().trim());
+        int cwtime = StringUtils.parseInt(mEtCwTime.getText().toString().trim());
+        int ccwspeed = StringUtils.parseInt(mEtCcwSpeed.getText().toString().trim());
+        int ccwtime = StringUtils.parseInt(mEtCcwTime.getText().toString().trim());
+        if (cwspeed == 0) {
+            cwspeed = 200;
+        }
+        if (cwspeed > 16800) {
+            cwspeed = 16800;
+        }
+        if (cwtime == 0) {
+            cwtime = 20;
+        }
+        if (cwtime > 100) {
+            cwtime = 100;
+        }
+
+        if (ccwspeed == 0) {
+            ccwspeed = 200;
+        }
+        if (ccwspeed > 16800) {
+            ccwspeed = 16800;
+        }
+        if (ccwtime == 0) {
+            ccwtime = 20;
+        }
+        if (ccwtime > 100) {
+            ccwtime = 100;
+        }
+        SharedPrefUtils.saveData(CWSPEED, cwspeed);
+        SharedPrefUtils.saveData(CWTIME, cwtime);
+        SharedPrefUtils.saveData(CCWSPEED, ccwspeed);
+        SharedPrefUtils.saveData(CCWTIME, ccwtime);
+        mWolongUiLogicImpl.cycle(cwspeed, cwtime, ccwspeed, ccwtime);
     }
 
     private void special() {
         stop();
         mLlNormal.setVisibility(View.GONE);
         mLlSpecial.setVisibility(View.VISIBLE);
+        mLlCycle.setVisibility(View.VISIBLE);
     }
 
     private void normal() {
         stop();
         mLlNormal.setVisibility(View.VISIBLE);
         mLlSpecial.setVisibility(View.GONE);
+        mLlCycle.setVisibility(View.GONE);
     }
 
     private void showErrorMsg(String msg) {
