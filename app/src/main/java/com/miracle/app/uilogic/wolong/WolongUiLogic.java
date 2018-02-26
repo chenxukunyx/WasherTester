@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.miracle.app.R;
 import com.miracle.app.base.BaseHomeUiLogic;
 import com.miracle.um_base_common.listener.OnNewUmdbListener;
+import com.miracle.um_base_common.util.UMTimer;
 import com.miracle.um_base_common.view.RotateImageView;
 import com.unilife.common.entities.UMDB;
 import com.unilife.common.utils.SharedPrefUtils;
@@ -150,6 +151,16 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     }
 
     private void stop() {
+        UMTimer.getInstance().startTimer("timer_reset_data", 500, 1, new UMTimer.UMTimerOutListener() {
+            @Override
+            public void UMTimeOut(String name) {
+                mVoltage.setText("0 V");
+                mPower.setText("0 W");
+                mTemperature.setText("0 ℃");
+                mVersion.setText("");
+                mElectricity.setText("0 A");
+            }
+        });
         mWolongUiLogicImpl.stop();
     }
 

@@ -2,10 +2,10 @@ package com.miracle.app.uilogic.wolong;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.miracle.app.model.WolongModel;
 import com.miracle.um_base_common.base.BaseUiLogicImpl;
-import com.miracle.um_base_common.util.StringUtils;
 import com.miracle.um_base_common.util.UMTimer;
 import com.miracle.um_base_common.view.RotateImageView;
 import com.unilife.common.entities.UMDB;
@@ -47,9 +47,10 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         boolean b = db.containValue(UMDB.SoftwareVersion_A1);
         if (db.containValue(UMDB.SoftwareVersion_A1) && !TextUtils.isEmpty(db.getValue(UMDB.SoftwareVersion_A1))) {
             int val = db.getIntegerValue(UMDB.SoftwareVersion_A1);
-            int lowVal = val & 0xff;
-            int highVal = (val & 0xff00) >> 8;
-            version = highVal;
+            int high = val & 0xff;
+            int low = (val & 0xff00) >> 8;
+            version = low;
+//            Log.i("cxk", "----->version: " + high + " " + low + " " + version);
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onVersionChange(version + "");
             }
@@ -57,9 +58,9 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
 
         if (db.containValue(UMDB.DCBusVoltage_A4) && !TextUtils.isEmpty(db.getValue(UMDB.DCBusVoltage_A4))) {
             int val = db.getIntegerValue(UMDB.DCBusVoltage_A4);
-            int lowVal = val & 0xff;
-            int highVal = (val & 0xff00) >> 8;
-            voltage = highVal * 10 + lowVal;
+            int high = val & 0xff;
+            int low = (val & 0xff00) >> 8;
+            voltage = low + high * 0xff;
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onVoltageChange(voltage + " V");
             }
@@ -74,9 +75,13 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
 
         if (db.containValue(UMDB.DrumSpeed_A4) && !TextUtils.isEmpty(db.getValue(UMDB.DrumSpeed_A4))) {
             int val = db.getIntegerValue(UMDB.DrumSpeed_A4);
-            int lowVal = val & 0xff;
-            int highVal = (val & 0xff00) >> 8;
-            rpm = highVal * 10 + lowVal;
+            int high = val & 0xff;
+            int low = (val & 0xff00) >> 8;
+            rpm = low + high * 0xff;
+            if (rpm > 20000) {
+                rpm = (255 - high) * 0xff + (255 - low);
+            }
+            Log.i("cxk", "----->rpm: " + high + " " + low + " " + rpm);
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onRpmChange(rpm + "");
             }
