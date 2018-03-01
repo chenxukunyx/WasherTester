@@ -1,8 +1,7 @@
 package com.miracle.um_base_common.logic;
 
-import android.content.Context;
-
 import com.miracle.um_base_common.base.BaseLogic;
+import com.miracle.um_base_common.entity.ConfigEntity;
 import com.miracle.um_base_common.entity.TesterEntity;
 import com.miracle.um_base_common.model.ConfigInfoModel;
 
@@ -26,6 +25,15 @@ public class ConfigLogic extends BaseLogic {
 
     public void saveConfig(TesterEntity entity) {
         configInfoModel.saveConfig(entity);
+    }
+
+    public void saveConfig(ConfigEntity entity) {
+        configInfoModel.saveConfig(entity);
+    }
+
+    public ConfigEntity getConfig() {
+        ConfigEntity entity = configInfoModel.getConfig();
+        return entity;
     }
 
     public TesterEntity loadConfig() {

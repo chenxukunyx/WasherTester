@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.miracle.app.bean.CheckResultEntity;
+import com.miracle.app.dialog.CheckResultDialog;
 import com.miracle.app.model.WolongModel;
 import com.miracle.um_base_common.base.BaseUiLogicImpl;
+import com.miracle.um_base_common.entity.ConfigEntity;
+import com.miracle.um_base_common.logic.ConfigLogic;
 import com.miracle.um_base_common.util.UMTimer;
 import com.miracle.um_base_common.view.RotateImageView;
 import com.unilife.common.entities.UMDB;
@@ -28,10 +32,17 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
     private boolean running;
     private static final String TIMER_CCW = "TIMER_CCW";
     private static final String TIMER_STOP = "TIMER_STOP";
+    private ConfigLogic mConfigLogic;
+    private ConfigEntity mConfigEntity;
+    private CheckResultEntity mCheckResultEntity;
 
     public WolongUiLogicImpl(Activity activity, RotateImageView rotateImageView) {
         super(activity, rotateImageView);
         mModel = new WolongModel();
+        mConfigLogic = new ConfigLogic();
+        mConfigEntity = mConfigLogic.getConfig();
+        mCheckResultEntity = new CheckResultEntity();
+        Log.i("cxk", "init WolongUiLogicImpl: ");
     }
 
     @Override
@@ -43,14 +54,12 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         Integer rpm = null;
         Integer temperature = null;
         Integer faultCode = null;
-        String s = db.getValue(UMDB.SoftwareVersion_A1);
-        boolean b = db.containValue(UMDB.SoftwareVersion_A1);
         if (db.containValue(UMDB.SoftwareVersion_A1) && !TextUtils.isEmpty(db.getValue(UMDB.SoftwareVersion_A1))) {
             int val = db.getIntegerValue(UMDB.SoftwareVersion_A1);
             int high = val & 0xff;
             int low = (val & 0xff00) >> 8;
             version = low;
-//            Log.i("cxk", "----->version: " + high + " " + low + " " + version);
+            mCheckResultEntity.setVersion(version);
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onVersionChange(version + "");
             }
@@ -61,6 +70,7 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
             int high = val & 0xff;
             int low = (val & 0xff00) >> 8;
             voltage = low + high * 0xff;
+            mCheckResultEntity.setVoltage(voltage);
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onVoltageChange(voltage + " V");
             }
@@ -81,9 +91,19 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
             if (rpm > 20000) {
                 rpm = (255 - high) * 0xff + (255 - low);
             }
-            Log.i("cxk", "----->rpm: " + high + " " + low + " " + rpm);
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onRpmChange(rpm + "");
+            }
+            if ((mConfigEntity.getLow_Speed() - 20) <= rpm && (mConfigEntity.getLow_Speed() + 20) >= rpm) {
+                float ele_val = db.getFloatValue(UMDB.Current_A4);
+                mCheckResultEntity.setEleLowSpeed(ele_val);
+                mCheckResultEntity.setPowerLowSpeed((ele_val * voltage));
+            }
+            if ((mConfigEntity.getHigh_Speed() - 20) <= rpm && (mConfigEntity.getHigh_Speed() + 20) >= rpm) {
+                float ele_val = db.getFloatValue(UMDB.Current_A4);
+                mCheckResultEntity.setEleHiSpeed(ele_val);
+                mCheckResultEntity.setPowerHiSpeed((ele_val * voltage));
+                mCheckResultEntity.setTempHiSpeed(db.getIntegerValue(UMDB.IPMTemperature_A4));
             }
         }
 
@@ -91,6 +111,9 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
             temperature = db.getIntegerValue(UMDB.IPMTemperature_A4);
             if (mOnNewUmdbListener != null) {
                 mOnNewUmdbListener.onTemperatureChange(temperature + " ℃");
+            }
+            if (rpm <= 20) {
+                mCheckResultEntity.setTempAmbient(temperature);
             }
         }
 
@@ -162,6 +185,8 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         onSendCmd(mModel.getFTCTestCmd(), mRotateImageView, NONE);
         UMTimer.getInstance().stopTimer(TIMER_CCW);
         UMTimer.getInstance().stopTimer(TIMER_STOP);
+        CheckResultDialog dialog = new CheckResultDialog(mActivity, mCheckResultEntity);
+        dialog.show();
     }
 
     public void cycle(int cwspeed, int cwtime, final int ccwspeed, int ccwtime) {
