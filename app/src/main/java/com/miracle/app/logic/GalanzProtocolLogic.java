@@ -166,7 +166,7 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
 //                    mProtocolListener.onError(true, "速度不稳定");
 //                }
 //            }else if (rpm != null) {
-//                mCheckResponse.setRpm(rpm);
+//                mCheckResponse.setPower(rpm);
 //            }
 //        }
         if (protocolCmd.isCheckVoltage()) {
@@ -362,7 +362,7 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
     protected boolean checkResponseOk() {
         final ProtocolCmd currentCmd = getCurrentCmd();
         if (currentCmd.isCheckRpm()) {
-//            if (mCheckResponse.getRpm() <= 0){
+//            if (mCheckResponse.getPower() <= 0){
             if (!mCheckResponse.isRpmOk()) {
                 if (mProtocolListener != null) {
                     mProtocolListener.onError(true, "速度不稳定");

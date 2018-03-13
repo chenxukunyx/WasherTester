@@ -5,6 +5,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_dialog"
         android:layout_width="@dimen/px840"
         android:layout_height="@dimen/px490"
         android:layout_centerInParent="true"
@@ -138,7 +139,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Parameters"
+                    android:text="测试项"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -146,7 +147,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="LL"
+                    android:text="下限"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -154,7 +155,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Normal"
+                    android:text="正常"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -162,7 +163,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="UL"
+                    android:text="上限"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -170,7 +171,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="VALUE"
+                    android:text="实测"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -178,7 +179,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Result"
+                    android:text="结论"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
             </LinearLayout>
@@ -300,7 +301,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Communication"
+                    android:text="通讯"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -354,7 +355,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="SW Version"
+                    android:text="软件版本"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -411,7 +412,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Umainnorm"
+                    android:text="供电电压"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -470,7 +471,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="High Speed"
+                    android:text="高速点"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -529,7 +530,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="I@hi-speed"
+                    android:text="高速电流"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -588,7 +589,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="I@low-speed"
+                    android:text="低速电流"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px22"/>
 
@@ -647,7 +648,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="P@hi-speed"
+                    android:text="高速功率"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -706,7 +707,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="P@low-speed"
+                    android:text="低速功率"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px22"/>
 
@@ -765,7 +766,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="T@ambient"
+                    android:text="模块常温"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -824,7 +825,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="T@hi-speed"
+                    android:text="模块高温"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -883,7 +884,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="I@hi-speed"
+                    android:text="缺相"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -891,7 +892,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="LL"
+                    android:text="NA"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -899,7 +900,7 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Normal"
+                    android:text="NA"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
@@ -907,24 +908,24 @@
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="UL"
+                    android:text="NA"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
                 <TextView
+                    android:id="@+id/tv_errorcode"
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="VALUE"
+                    android:text="NA"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
 
                 <TextView
-                    android:id="@+id/tv_ele_result"
+                    android:id="@+id/tv_errorcode_result"
                     android:layout_width="@dimen/px140"
                     android:layout_height="@dimen/px35"
                     android:gravity="center"
-                    android:text="Result"
                     android:textColor="@color/black"
                     android:textSize="@dimen/px26"/>
             </LinearLayout>

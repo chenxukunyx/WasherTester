@@ -10,7 +10,7 @@ package com.miracle.app.bean;
  */
 
 public class CheckResultEntity {
-    private float version;
+    private String version;
     private float voltage;
     private float speed;
     private float eleHiSpeed;
@@ -19,12 +19,13 @@ public class CheckResultEntity {
     private float powerLowSpeed;
     private float tempAmbient;
     private float tempHiSpeed;
+    private int errorCode;
 
-    public float getVersion() {
+    public String getVersion() {
         return version;
     }
 
-    public void setVersion(float version) {
+    public void setVersion(String version) {
         this.version = version;
     }
 
@@ -105,5 +106,13 @@ public class CheckResultEntity {
                 ", tempAmbient=" + tempAmbient +
                 ", tempHiSpeed=" + tempHiSpeed +
                 '}';
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 }

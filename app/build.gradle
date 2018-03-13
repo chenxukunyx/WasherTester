@@ -9,8 +9,8 @@ android {
         applicationId "com.miracle.app"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode 1000001//第一个零为三江版本(1为新安版本)  第二个零代表电机厂商版本
-        versionName "1.0.1.001"//0:galanz 1:wolong
+        versionCode 101006//第一个零为三江版本(1为新安版本)  第二个零代表电机厂商版本
+        versionName "1.0.1.006"//0:galanz 1:wolong
 
     }
 

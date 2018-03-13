@@ -60,7 +60,7 @@ public class ExcelUtils {
                 if (key.equals(WasherConstants.Tambient)) {
                     entity.setTambient(value);
                 } else if (key.equals(WasherConstants.SW_Version)) {
-                    entity.setSW_Version(value);
+                    entity.setSW_Version((int)value + "");
                 } else if (key.equals(WasherConstants.Umain_norm)) {
                     entity.setUmain_norm(value);
                 } else if (key.equals(WasherConstants.Umain_LL)) {

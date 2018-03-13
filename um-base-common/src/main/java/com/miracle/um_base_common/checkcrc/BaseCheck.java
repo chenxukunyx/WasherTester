@@ -68,4 +68,77 @@ public class BaseCheck {
         System.out.println(strCrc);
         return crc;
     }
+
+    private static int crc16_sanyo_table[] = { 0x0000, 0x1081, 0x2102, 0x3183, 0x4204, 0x5285, 0x6306, 0x7387, 0x8408, 0x9489, 0xa50a, 0xb58b, 0xc60c, 0xd68d, 0xe70e, 0xf78f };
+
+    public static char getCRC8048(int b[], int len) {
+        int vCRC = 0xffff;
+        int i = 0;
+        while (len-- != 0) {
+            vCRC = (vCRC >> 4) ^ crc16_sanyo_table[(vCRC & 0x0f) ^ ((b[i]) & 0x0f)];
+            vCRC = (vCRC >> 4) ^ crc16_sanyo_table[(vCRC & 0x0f) ^ ((b[i]) >> 4)];
+            i++;
+        }
+        return (char) ~vCRC;
+    }
+
+    /************************************************************************/
+    /* Name : GetVRC VRC8 */
+    /* Date : 2006/05/29 */
+    /* Function : Calculate VRC cheksum Even check */
+    /************************************************************************/
+    /* Input : var,len */
+    /* Return : VRC checksum */
+    /************************************************************************/
+    public static int GetVRC(int var, int len)
+    {
+        int i;
+        int lrc = 0;
+        int Temp = var;
+
+        for(i=0; i<len; i++)
+        {
+            lrc += (int)(var&0x1);
+            var = (int)(var>>1);
+        }
+        lrc = (int)(lrc&0x1);
+        if(lrc != 0)
+        {
+            Temp |= 0x80;
+        }else{
+            Temp &= 0x7F;
+        }
+        return Temp;
+    }
+
+
+    /************************************************************************/
+    /* Name : GetLRC LRC8 */
+    /* Date : 2006/05/29 */
+    /* Function : Calculate LRC cheksum Even check */
+    /************************************************************************/
+    /* Input : ptr,len */
+    /* Return : LRC checksum */
+    /************************************************************************/
+    public static int GetLRC(int[] ptr, int len)
+    {
+        int lrc,lrc1,i,TempLen;
+        lrc = 0;
+        lrc1 = 0;
+        i = 0;
+        TempLen = len;
+
+        for(i=0;i<8;i++)
+        {
+            while(TempLen--!=0)
+            {
+                lrc1 += (int)(ptr[len-TempLen-1]&(0x1<<i));
+            }
+            lrc |= (int)(lrc1&(0x1<<i));
+            lrc1 = 0;
+            TempLen = len;
+        }
+
+        return lrc;
+    }
 }

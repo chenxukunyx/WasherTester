@@ -11,7 +11,7 @@ package com.miracle.um_base_common.entity;
 
 public class ConfigEntity extends BaseEntity {
     private float Tambient;//环境温度
-    private float SW_Version;
+    private String SW_Version;
     private float Umain_norm;
     private float Umain_UL;
     private float Umain_LL;
@@ -44,11 +44,11 @@ public class ConfigEntity extends BaseEntity {
         Tambient = tambient;
     }
 
-    public float getSW_Version() {
+    public String getSW_Version() {
         return SW_Version;
     }
 
-    public void setSW_Version(float SW_Version) {
+    public void setSW_Version(String SW_Version) {
         this.SW_Version = SW_Version;
     }
 

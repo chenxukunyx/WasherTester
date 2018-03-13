@@ -2,6 +2,7 @@ package com.miracle.app.uilogic.wolong;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.miracle.app.R;
+import com.miracle.app.WolongMng;
 import com.miracle.app.base.BaseHomeUiLogic;
 import com.miracle.um_base_common.listener.OnNewUmdbListener;
 import com.miracle.um_base_common.util.UMTimer;
@@ -59,6 +61,9 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     private static final String CCWSPEED  = "CCWSPEED";
     private static final String CCWTIME  = "CCWTIME";
 
+    private static final int NORMAL = 0x01;
+    private static final int SPECIAL = 0x02;
+    private int status = NORMAL;
 
     public WolongUiLogic(Activity activity) {
         super(activity);
@@ -125,29 +130,33 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
                 normal();
                 break;
             case R.id.btn_10000:
-                start(10000);
+                start(10000, WolongUiLogicImpl.SPECIAL);
                 break;
             case R.id.btn_16000:
-                start(16000);
+                start(16000, WolongUiLogicImpl.SPECIAL);
                 break;
             case R.id.btn_ccw:
-                start(-6000);
+                start(-16000, WolongUiLogicImpl.NORMAL);
                 break;
             case R.id.btn_cw:
-                start(6000);
+                start(16000, WolongUiLogicImpl.NORMAL);
                 break;
             case R.id.btn_cycle:
                 cycle();
                 break;
             case R.id.btn_stop:
+                if (status == NORMAL) {
+                    mWolongUiLogicImpl.setNormalState(true);
+                }
                 stop();
                 break;
         }
     }
 
-    private void start(int rpm) {
+    private void start(int rpm, String step) {
         hideErrorMsg();
-        mWolongUiLogicImpl.start(rpm);
+        int realRpm = (int) (rpm / 11.5);
+        mWolongUiLogicImpl.start(realRpm, step);
     }
 
     private void stop() {
@@ -202,6 +211,8 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     }
 
     private void special() {
+        status = SPECIAL;
+        mWolongUiLogicImpl.setNormalState(false);
         stop();
         mLlNormal.setVisibility(View.GONE);
         mLlSpecial.setVisibility(View.VISIBLE);
@@ -209,6 +220,8 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     }
 
     private void normal() {
+        status = NORMAL;
+        mWolongUiLogicImpl.setNormalState(false);
         stop();
         mLlNormal.setVisibility(View.VISIBLE);
         mLlSpecial.setVisibility(View.GONE);

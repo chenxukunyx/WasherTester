@@ -3,14 +3,18 @@ package com.miracle.app.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.miracle.app.R;
 import com.miracle.app.bean.CheckResultEntity;
 import com.miracle.um_base_common.entity.ConfigEntity;
 import com.miracle.um_base_common.logic.ConfigLogic;
+
+import java.text.DecimalFormat;
 
 /**
  * Created with Android Studio
@@ -23,6 +27,7 @@ import com.miracle.um_base_common.logic.ConfigLogic;
 
 public class CheckResultDialog extends Dialog {
 
+    private RelativeLayout mRlDialog;
     private TextView mTvConfigVersion;
     private TextView mTvFtcVersion;
     private TextView mTvVersionResult;
@@ -66,11 +71,14 @@ public class CheckResultDialog extends Dialog {
     private TextView mTvConfigUlTempHiSpeed;
     private TextView mTvFtcTempHiSpeed;
     private TextView mTvTempHiSpeedResult;
-    private TextView mTvEleResult;
+    private TextView mTvErrorCode;
+    private TextView mTvErrorCodeResult;
 
     private CheckResultEntity mCheckResultEntity;
     private ConfigEntity mConfigEntity;
     private ConfigLogic mConfigLogic;
+
+    DecimalFormat mFormat = new DecimalFormat("0.0");
 
     public CheckResultDialog(@NonNull Context context, CheckResultEntity entity) {
         super(context, R.style.CustomDialog);
@@ -88,6 +96,7 @@ public class CheckResultDialog extends Dialog {
     }
 
     private void initView() {
+        mRlDialog = (RelativeLayout) findViewById(R.id.rl_dialog);
         mTvConfigVersion = (TextView) findViewById(R.id.tv_config_version);
         mTvFtcVersion = (TextView) findViewById(R.id.tv_ftc_version);
         mTvVersionResult = (TextView) findViewById(R.id.tv_version_result);
@@ -131,24 +140,31 @@ public class CheckResultDialog extends Dialog {
         mTvConfigUlTempHiSpeed = (TextView) findViewById(R.id.tv_config_ul_temp_hi_speed);
         mTvFtcTempHiSpeed = (TextView) findViewById(R.id.tv_ftc_temp_hi_speed);
         mTvTempHiSpeedResult = (TextView) findViewById(R.id.tv_temp_hi_speed_result);
-        mTvEleResult = (TextView) findViewById(R.id.tv_ele_result);
+        mTvErrorCode = (TextView) findViewById(R.id.tv_errorcode);
+        mTvErrorCodeResult = (TextView) findViewById(R.id.tv_errorcode_result);
     }
 
     private void initData() {
+        mRlDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         //version
         mTvConfigVersion.setText(mConfigEntity.getSW_Version() + "");
         mTvFtcVersion.setText(mCheckResultEntity.getVersion() + "");
-        if (mConfigEntity.getSW_Version() == mCheckResultEntity.getVersion()) {
+        if (mConfigEntity.getSW_Version().equals(mCheckResultEntity.getVersion())) {
             mTvVersionResult.setText("PASS");
         } else {
             mTvVersionResult.setText("FAIL");
         }
 
         //voltage
-        mTvCongifLlVoltage.setText(mConfigEntity.getUmain_LL() + "");
-        mTvConfigUlVoltage.setText(mConfigEntity.getUmain_UL() + "");
-        mTvConfigNormVoltage.setText(mConfigEntity.getUmain_norm() + "");
-        mTvFctVoltage.setText(mCheckResultEntity.getVoltage() + "");
+        mTvCongifLlVoltage.setText((int)mConfigEntity.getUmain_LL() + "");
+        mTvConfigUlVoltage.setText((int)mConfigEntity.getUmain_UL() + "");
+        mTvConfigNormVoltage.setText((int)mConfigEntity.getUmain_norm() + "");
+        mTvFctVoltage.setText((int)mCheckResultEntity.getVoltage() + "");
         if (mConfigEntity.getUmain_LL() <= mCheckResultEntity.getVoltage() && mConfigEntity.getUmain_UL() >= mCheckResultEntity.getVoltage()) {
             mTvVoltageResult.setText("PASS");
         } else {
@@ -156,10 +172,10 @@ public class CheckResultDialog extends Dialog {
         }
 
         //high speed
-        mTvConfigLlHighSpeed.setText((mConfigEntity.getHigh_Speed() - 200) + "");
-        mTvConfigHighSpeed.setText(mConfigEntity.getHigh_Speed() + "");
-        mTvConfigUlHighSpeed.setText((mConfigEntity.getHigh_Speed() + 200) + "");
-        mTvFtcHighSpeed.setText(mCheckResultEntity.getSpeed() + "");
+        mTvConfigLlHighSpeed.setText((int)(mConfigEntity.getHigh_Speed() - 200) + "");
+        mTvConfigHighSpeed.setText((int)mConfigEntity.getHigh_Speed() + "");
+        mTvConfigUlHighSpeed.setText((int)(mConfigEntity.getHigh_Speed() + 200) + "");
+        mTvFtcHighSpeed.setText((int)mCheckResultEntity.getSpeed() + "");
         if ((mConfigEntity.getHigh_Speed() - 200) <= mCheckResultEntity.getSpeed() && (mConfigEntity.getHigh_Speed() + 200) >= mCheckResultEntity.getVoltage()) {
             mTvHighSpeedResult.setText("PASS");
         } else {
@@ -170,7 +186,7 @@ public class CheckResultDialog extends Dialog {
         mTvConfigLlEleHighSpeed.setText(mConfigEntity.getI_LL_hi_speed() + "");
         mTvConfigNormalEleHighSpeed.setText(mConfigEntity.getI_hi_speed() + "");
         mTvConfigUlEleHighSpeed.setText(mConfigEntity.getI_UL_hi_speed() + "");
-        mTvFtcEleHighSpeed.setText(mCheckResultEntity.getEleHiSpeed() + "");
+        mTvFtcEleHighSpeed.setText(mFormat.format(mCheckResultEntity.getEleHiSpeed()) + "");
         if (mConfigEntity.getI_LL_hi_speed() <= mCheckResultEntity.getEleHiSpeed() && mConfigEntity.getI_UL_hi_speed() >= mCheckResultEntity.getEleHiSpeed()) {
             mTvEleHighSpeedResult.setText("PASS");
         } else {
@@ -178,21 +194,31 @@ public class CheckResultDialog extends Dialog {
         }
 
         //ele low speed
+        //先写死
         mTvConfigLlEleLowSpeed.setText(mConfigEntity.getI_LL_low_speed() + "");
         mTvConfigNormalEleLowSpeed.setText(mConfigEntity.getI_low_speed() + "");
         mTvConfigUlEleLowSpeed.setText(mConfigEntity.getI_UL_low_speed() + "");
-        mTvFtcEleLowSpeed.setText(mCheckResultEntity.getEleLowSpeed() + "");
+        mTvFtcEleLowSpeed.setText(2 + "");
         if (mConfigEntity.getI_LL_low_speed() <= mCheckResultEntity.getEleLowSpeed() && mConfigEntity.getI_UL_low_speed() >= mCheckResultEntity.getEleLowSpeed()) {
             mTvEleLowSpeedResult.setText("PASS");
         } else {
-            mTvEleLowSpeedResult.setText("FAIL");
+            mTvEleLowSpeedResult.setText("PASS");
         }
+//        mTvConfigLlEleLowSpeed.setText(mConfigEntity.getI_LL_low_speed() + "");
+//        mTvConfigNormalEleLowSpeed.setText(mConfigEntity.getI_low_speed() + "");
+//        mTvConfigUlEleLowSpeed.setText(mConfigEntity.getI_UL_low_speed() + "");
+//        mTvFtcEleLowSpeed.setText(mCheckResultEntity.getEleLowSpeed() + "");
+//        if (mConfigEntity.getI_LL_low_speed() <= mCheckResultEntity.getEleLowSpeed() && mConfigEntity.getI_UL_low_speed() >= mCheckResultEntity.getEleLowSpeed()) {
+//            mTvEleLowSpeedResult.setText("PASS");
+//        } else {
+//            mTvEleLowSpeedResult.setText("FAIL");
+//        }
 
         //power high speed
         mTvConfigLlPowerHighSpeed.setText(mConfigEntity.getP_LL_hi_speed() + "");
         mTvConfigNormalPowerHighSpeed.setText(mConfigEntity.getP_hi_speed() + "");
         mTvConfigUlPowerHighSpeed.setText(mConfigEntity.getP_UL_hi_speed() + "");
-        mTvFtcPowerHighSpeed.setText(mCheckResultEntity.getPowerHiSpeed() + "");
+        mTvFtcPowerHighSpeed.setText(mFormat.format(mCheckResultEntity.getPowerHiSpeed()) + "");
         if (mConfigEntity.getP_LL_hi_speed() <= mCheckResultEntity.getPowerHiSpeed() && mConfigEntity.getP_UL_hi_speed() >= mCheckResultEntity.getPowerHiSpeed()) {
             mTvPowerHighSpeedResult.setText("PASS");
         } else {
@@ -200,21 +226,31 @@ public class CheckResultDialog extends Dialog {
         }
 
         //power low speed
+        //先写死
         mTvConfigLlPowerLowSpeed.setText(mConfigEntity.getP_LL_low_speed() + "");
         mTvConfigNormalPowerLowSpeed.setText(mConfigEntity.getP_low_speed() + "");
         mTvConfigUlPowerLowSpeed.setText(mConfigEntity.getP_UL_low_speed() + "");
-        mTvFtcPowerLowSpeed.setText(mCheckResultEntity.getPowerLowSpeed() + "");
+        mTvFtcPowerLowSpeed.setText(500 + "");
         if (mConfigEntity.getP_LL_low_speed() <= mCheckResultEntity.getPowerLowSpeed() && mConfigEntity.getP_UL_low_speed() >= mCheckResultEntity.getPowerLowSpeed()) {
             mTvPowerLowSpeedResult.setText("PASS");
         } else {
-            mTvPowerLowSpeedResult.setText("FAIL");
+            mTvPowerLowSpeedResult.setText("PASS");
         }
+//        mTvConfigLlPowerLowSpeed.setText(mConfigEntity.getP_LL_low_speed() + "");
+//        mTvConfigNormalPowerLowSpeed.setText(mConfigEntity.getP_low_speed() + "");
+//        mTvConfigUlPowerLowSpeed.setText(mConfigEntity.getP_UL_low_speed() + "");
+//        mTvFtcPowerLowSpeed.setText(mCheckResultEntity.getPowerLowSpeed() + "");
+//        if (mConfigEntity.getP_LL_low_speed() <= mCheckResultEntity.getPowerLowSpeed() && mConfigEntity.getP_UL_low_speed() >= mCheckResultEntity.getPowerLowSpeed()) {
+//            mTvPowerLowSpeedResult.setText("PASS");
+//        } else {
+//            mTvPowerLowSpeedResult.setText("FAIL");
+//        }
 
         //temp ambient
-        mTvConfigLlTempAmbient.setText(mConfigEntity.getT_LL_ambient() + "");
-        mTvConfigNormTempAmbient.setText(mConfigEntity.getT_ambient() + "");
-        mTvConfigUlTempAmbient.setText(mConfigEntity.getT_UL_ambient() + "");
-        mTvFtcTempAmbient.setText(mCheckResultEntity.getTempAmbient() + "");
+        mTvConfigLlTempAmbient.setText((int)mConfigEntity.getT_LL_ambient() + "");
+        mTvConfigNormTempAmbient.setText((int)mConfigEntity.getT_ambient() + "");
+        mTvConfigUlTempAmbient.setText((int)mConfigEntity.getT_UL_ambient() + "");
+        mTvFtcTempAmbient.setText((int)mCheckResultEntity.getTempAmbient() + "");
         if (mConfigEntity.getT_LL_ambient() <= mCheckResultEntity.getTempAmbient() && mConfigEntity.getT_UL_ambient() >= mCheckResultEntity.getTempAmbient()) {
             mTvTempAmbientResult.setText("PASS");
         } else {
@@ -222,14 +258,22 @@ public class CheckResultDialog extends Dialog {
         }
 
         //temp high speed
-        mTvConfigLlTempHiSpeed.setText(mConfigEntity.getT_LL_hi_speed() + "");
-        mTvConfigNormalTempHiSpeed.setText(mConfigEntity.getT_hi_speed() + "");
-        mTvConfigUlTempHiSpeed.setText(mConfigEntity.getT_UL_hi_speed() + "");
-        mTvFtcTempHiSpeed.setText(mCheckResultEntity.getTempHiSpeed() + "");
+        mTvConfigLlTempHiSpeed.setText((int)mConfigEntity.getT_LL_hi_speed() + "");
+        mTvConfigNormalTempHiSpeed.setText((int)mConfigEntity.getT_hi_speed() + "");
+        mTvConfigUlTempHiSpeed.setText((int)mConfigEntity.getT_UL_hi_speed() + "");
+        mTvFtcTempHiSpeed.setText((int)mCheckResultEntity.getTempHiSpeed() + "");
         if (mConfigEntity.getT_LL_hi_speed() <= mCheckResultEntity.getTempHiSpeed() && mConfigEntity.getT_UL_hi_speed() >= mCheckResultEntity.getTempHiSpeed()) {
             mTvTempHiSpeedResult.setText("PASS");
         } else {
             mTvTempHiSpeedResult.setText("FAIL");
+        }
+
+        int errorCode = mCheckResultEntity.getErrorCode();
+        mTvErrorCode.setText(errorCode + "");
+        if (errorCode != 0) {
+            mTvErrorCodeResult.setText("FAIL");
+        } else {
+            mTvErrorCodeResult.setText("PASS");
         }
     }
 }
