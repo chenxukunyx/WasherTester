@@ -9,6 +9,7 @@ import com.miracle.um_base_common.entity.ConfigEntity;
 import com.miracle.um_base_common.logic.ConfigLogic;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -44,7 +45,8 @@ public class ExcelUtils {
             String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + name;
             File file = new File(path);
             if (file.exists()) {
-                is = context.getApplicationContext().openFileInput(path);
+//                is = context.getApplicationContext().openFileInput(path);
+                is = new FileInputStream(path);
                 Log.i(TAG, "-----> sdcard: ");
             } else {
                 is = context.getApplicationContext().getAssets().open(name);

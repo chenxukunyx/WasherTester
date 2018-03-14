@@ -5,7 +5,7 @@ package com.miracle.app.config;
  */
 public class BrandConfig {
     public static final String MODEL_WOLONG = "wolong";
-    public static final String MODEL_WOLONG_CHINESE = "卧龙测试工具";
+    public static final String MODEL_WOLONG_CHINESE = "测试工具";
 
     public static final String MODEL_GALANZ = "galanz";
     public static final String MODEL_GALANZ_CHINESE = "格兰仕测试工具";
