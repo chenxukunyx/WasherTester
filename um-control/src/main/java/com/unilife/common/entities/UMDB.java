@@ -124,6 +124,21 @@ public class UMDB extends BitDB implements Parcelable{
     public final static String MotorAckData50 = "MotorAckData50";
     public final static String MotorAckData51 = "MotorAckData51";
     public final static String MotorAckData52 = "MotorAckData52";
+    public final static String MotorAckData53 = "MotorAckData53";
+    public final static String MotorAckData54 = "MotorAckData54";
+    public final static String MotorAckData55 = "MotorAckData55";
+    public final static String MotorAckData56 = "MotorAckData56";
+    public final static String MotorAckData57 = "MotorAckData57";
+    public final static String MotorAckData58 = "MotorAckData58";
+    public final static String MotorAckData59 = "MotorAckData59";
+    public final static String MotorAckData60 = "MotorAckData60";
+    public final static String MotorAckData61 = "MotorAckData61";
+    public final static String MotorAckData62 = "MotorAckData62";
+    public final static String MotorAckData63 = "MotorAckData63";
+    public final static String MotorAckData64 = "MotorAckData64";
+    public final static String MotorAckData65 = "MotorAckData65";
+    public final static String MotorAckData66 = "MotorAckData66";
+    public final static String MotorAckData67 = "MotorAckData67";
 
     //send
     public final static String EventPLatformMessage = "EventPLatformMessage";
@@ -269,6 +284,21 @@ public class UMDB extends BitDB implements Parcelable{
         addValue(MotorAckData50, 0);
         addValue(MotorAckData51, 0);
         addValue(MotorAckData52, 0);
+        addValue(MotorAckData53, 0);
+        addValue(MotorAckData54, 0);
+        addValue(MotorAckData55, 0);
+        addValue(MotorAckData56, 0);
+        addValue(MotorAckData57, 0);
+        addValue(MotorAckData58, 0);
+        addValue(MotorAckData59, 0);
+        addValue(MotorAckData60, 0);
+        addValue(MotorAckData61, 0);
+        addValue(MotorAckData62, 0);
+        addValue(MotorAckData63, 0);
+        addValue(MotorAckData64, 0);
+        addValue(MotorAckData65, 0);
+        addValue(MotorAckData66, 0);
+        addValue(MotorAckData67, 0);
 
         addValue(EventPLatformMessage, 0);
         addValue(EventAccelerateTime, 0);
@@ -343,6 +373,21 @@ public class UMDB extends BitDB implements Parcelable{
             setUpdateTo(MotorAckData50, REPORT_FROM_SERIAL | UPDATE_TO_UI);
             setUpdateTo(MotorAckData51, REPORT_FROM_SERIAL | UPDATE_TO_UI);
             setUpdateTo(MotorAckData52, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData53, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData54, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData55, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData56, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData57, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData58, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData59, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData60, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData61, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData62, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData63, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData64, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData65, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData66, REPORT_FROM_SERIAL | UPDATE_TO_UI);
+            setUpdateTo(MotorAckData67, REPORT_FROM_SERIAL | UPDATE_TO_UI);
 
             setUpdateTo(SoftwareVersion_A1, REPORT_FROM_SERIAL | UPDATE_TO_UI);
             setUpdateTo(MotorNumber_A1, REPORT_FROM_SERIAL | UPDATE_TO_UI);

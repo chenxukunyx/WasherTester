@@ -141,4 +141,26 @@ public class BaseCheck {
 
         return lrc;
     }
+
+    public static int GetLRC(int[] ptr, int len, int offset)
+    {
+        int lrc,lrc1,i,TempLen;
+        lrc = 0;
+        lrc1 = 0;
+        i = 0;
+        TempLen = len;
+
+        for(i=0;i<8;i++)
+        {
+            while(TempLen--!=offset)
+            {
+                lrc1 += (int)(ptr[len-TempLen-1]&(0x1<<i));
+            }
+            lrc |= (int)(lrc1&(0x1<<i));
+            lrc1 = 0;
+            TempLen = len;
+        }
+
+        return lrc;
+    }
 }

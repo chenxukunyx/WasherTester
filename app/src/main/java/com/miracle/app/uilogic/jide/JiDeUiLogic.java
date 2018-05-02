@@ -1,4 +1,4 @@
-package com.miracle.app.uilogic.wolong;
+package com.miracle.app.uilogic.jide;
 
 import android.app.Activity;
 import android.view.View;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.miracle.app.R;
 import com.miracle.app.base.BaseHomeUiLogic;
+import com.miracle.app.model.JiDeModel;
+import com.miracle.app.uilogic.wolong.WolongUiLogic;
+import com.miracle.app.uilogic.wolong.WolongUiLogicImpl;
 import com.miracle.um_base_common.listener.OnNewUmdbListener;
 import com.miracle.um_base_common.util.UMTimer;
 import com.miracle.um_base_common.view.RotateImageView;
@@ -21,12 +24,13 @@ import com.unilife.common.utils.StringUtils;
  *
  * @fuction:
  * @author: chenxukun
- * @data: 2017/12/21
- * @time: 下午2:57
+ * @data: 2018/3/13
+ * @time: 上午10:56
  */
 
-public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListener, OnNewUmdbListener {
-    private WolongUiLogicImpl mWolongUiLogicImpl;
+public class JiDeUiLogic extends BaseHomeUiLogic implements View.OnClickListener, OnNewUmdbListener{
+
+    private JiDeUiLogicImpl mJiDeUiLogicImpl;
 
     private TextView mVoltage;
     private TextView mPower;
@@ -58,14 +62,10 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     private static final String CCWSPEED  = "CCWSPEED";
     private static final String CCWTIME  = "CCWTIME";
 
-    private static final int NORMAL = 0x01;
-    private static final int SPECIAL = 0x02;
-    private int status = NORMAL;
-
-    public WolongUiLogic(Activity activity) {
+    public JiDeUiLogic(Activity activity) {
         super(activity);
         initView();
-        mWolongUiLogicImpl = new WolongUiLogicImpl(activity, mRotateImageView);
+        mJiDeUiLogicImpl = new JiDeUiLogicImpl(activity, mRotateImageView);
         initEvent();
     }
 
@@ -109,12 +109,12 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         mBtnCw.setOnClickListener(this);
         mBtnCycle.setOnClickListener(this);
         mBtnStop.setOnClickListener(this);
-        mWolongUiLogicImpl.setOnNewUmdbListener(this);
+        mJiDeUiLogicImpl.setOnNewUmdbListener(this);
     }
 
     @Override
     public void onNewUmdbData(UMDB db) {
-        mWolongUiLogicImpl.onNewUmdbData(db);
+        mJiDeUiLogicImpl.onNewUmdbData(db);
     }
 
     @Override
@@ -127,33 +127,29 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
                 normal();
                 break;
             case R.id.btn_10000:
-                start(10000, WolongUiLogicImpl.SPECIAL);
+                start(JiDeModel.CW, 10000);
                 break;
             case R.id.btn_16000:
-                start(16000, WolongUiLogicImpl.SPECIAL);
+                start(JiDeModel.CW, 16000);
                 break;
             case R.id.btn_ccw:
-                start(-16000, WolongUiLogicImpl.NORMAL);
+                start(JiDeModel.CCW, 16000);
                 break;
             case R.id.btn_cw:
-                start(16000, WolongUiLogicImpl.NORMAL);
+                start(JiDeModel.CW, 16000);
                 break;
             case R.id.btn_cycle:
                 cycle();
                 break;
             case R.id.btn_stop:
-                if (status == NORMAL) {
-                    mWolongUiLogicImpl.setNormalState(true);
-                }
                 stop();
                 break;
         }
     }
 
-    private void start(int rpm, String step) {
+    private void start(int direct, int rpm) {
         hideErrorMsg();
-        int realRpm = (int) (rpm / 11.5);
-        mWolongUiLogicImpl.start(realRpm, step);
+        mJiDeUiLogicImpl.start(direct, rpm);
     }
 
     private void stop() {
@@ -165,9 +161,10 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
                 mTemperature.setText("0 ℃");
                 mVersion.setText("");
                 mElectricity.setText("0 A");
+                mRpm.setText("");
             }
         });
-        mWolongUiLogicImpl.stop();
+        mJiDeUiLogicImpl.stop();
     }
 
     private void cycle() {
@@ -204,12 +201,10 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         SharedPrefUtils.saveData(CWTIME, cwtime);
         SharedPrefUtils.saveData(CCWSPEED, ccwspeed);
         SharedPrefUtils.saveData(CCWTIME, ccwtime);
-        mWolongUiLogicImpl.cycle(cwspeed, cwtime, ccwspeed, ccwtime);
+        mJiDeUiLogicImpl.cycle(cwspeed, cwtime, ccwspeed, ccwtime);
     }
 
     private void special() {
-        status = SPECIAL;
-        mWolongUiLogicImpl.setNormalState(false);
         stop();
         mLlNormal.setVisibility(View.GONE);
         mLlSpecial.setVisibility(View.VISIBLE);
@@ -217,8 +212,6 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     }
 
     private void normal() {
-        status = NORMAL;
-        mWolongUiLogicImpl.setNormalState(false);
         stop();
         mLlNormal.setVisibility(View.VISIBLE);
         mLlSpecial.setVisibility(View.GONE);
@@ -274,8 +267,8 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
 
     @Override
     public void release() {
-        if (mWolongUiLogicImpl != null) {
-            mWolongUiLogicImpl = null;
+        if (mJiDeUiLogicImpl != null) {
+            mJiDeUiLogicImpl = null;
         }
     }
 }

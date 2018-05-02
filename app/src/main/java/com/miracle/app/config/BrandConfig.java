@@ -13,6 +13,9 @@ public class BrandConfig {
     public static final String MODEL_JIDE = "jide";
     public static final String MODEL_JIDE_CHINESE = "吉德测试工具";
 
+    public static final String MODEL_WEILI = "weili";
+    public static final String MODEL_WEILI_CHINESE = "613812测试工具";
+
     public static final String MODEL_SANYANG = "sanyang";//三洋
     public static final String MODEL_XIAOTIANE = "xiaotiane";//小天鹅
     public static final String MODEL_TCL = "tcl";//tcl

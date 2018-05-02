@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.miracle.app.base.BaseProtocolCmdLogic;
 import com.miracle.app.model.GalanzModel;
+import com.miracle.app.model.WeiLiModel;
 import com.miracle.um_base_common.entity.ProtocolCmd;
 import com.miracle.um_base_common.entity.TesterEntity;
 import com.miracle.um_base_common.logic.ConfigLogic;
@@ -19,23 +20,23 @@ import java.util.Map;
 /**
  * Created by 万启林 on 2015/8/12.
  */
-public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
-    private static GalanzProtocolLogic mInstance;
+public class WeiLiProtocolLogic extends BaseProtocolCmdLogic {
+    private static WeiLiProtocolLogic mInstance;
 
     private float maxEle = 0;
 
-    private GalanzModel mModel;
+    private WeiLiModel mModel;
 
-    private GalanzProtocolLogic() {
+    private WeiLiProtocolLogic() {
         super();
     }
 
     java.text.DecimalFormat df = new java.text.DecimalFormat("#.##");
 
-    public static GalanzProtocolLogic getInstance() {
+    public static WeiLiProtocolLogic getInstance() {
         if (mInstance == null) {
-            synchronized (GalanzProtocolLogic.class) {
-                mInstance = new GalanzProtocolLogic();
+            synchronized (WeiLiProtocolLogic.class) {
+                mInstance = new WeiLiProtocolLogic();
             }
         }
         return mInstance;
@@ -48,59 +49,77 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
 
     @Override
     public void recvResponse(int error, int ackCmd, UMDB data) {
-
         Integer rpm = null;
         Integer voltage = null;
+        String version = null;
+        float electricity = 0.0f;
         Integer power = null;
         Integer temperature = null;
-        Float electricity = null;
-        String version = null;
 
-        //转速
+        //查询状态c 返回值
+        if (!TextUtils.isEmpty(data.getValue(UMDB.MotorAckData24))) {
+            Log.d(TAG, "======>MotorAckData24 back");
+
+        }
         if (!TextUtils.isEmpty(data.getValue(UMDB.MotorAckData18))) {
-            Log.d(TAG, "MotorAckData18 back");
-            int highRpm = (int) data.getIntValue(UMDB.MotorAckData11);
-            int mediumRpm = (int) data.getIntValue(UMDB.MotorAckData12);
-            int lowRpm = (int) data.getIntValue(UMDB.MotorAckData13);
-            int decimalRpm = (int) data.getIntValue(UMDB.MotorAckData14);
-            rpm = ascToHex(highRpm, mediumRpm, lowRpm, decimalRpm);
+            Log.d(TAG, "======>MotorAckData18 back");
+
+            //实际转向
+            int highRpm = getUMDBValue(data, UMDB.MotorAckData11);
+            int mediaRpm = getUMDBValue(data, UMDB.MotorAckData12);
+            int lowRpm = getUMDBValue(data, UMDB.MotorAckData13);
+            int xiaoshuRpm = getUMDBValue(data, UMDB.MotorAckData14);
+            rpm = ascToHex(highRpm, mediaRpm, lowRpm, xiaoshuRpm);
             rpm = rpm / 16;
+
         }
 
-        if (!TextUtils.isEmpty(data.getValue(UMDB.MotorAckData52))) {
-            Log.d(TAG, "MotorAckData52 back");
-            int highTemp = (int) data.getIntValue(UMDB.MotorAckData50);
-            int lowTemp = (int) data.getIntValue(UMDB.MotorAckData51);
-            temperature = ascToHex(highTemp, lowTemp);
-        }
 
-        //版本
         if (!TextUtils.isEmpty(data.getValue(UMDB.MotorAckData32))) {
-            Log.d(TAG, "MotorAckData32 back");
-            int version3 = getIntUmdbValue(data, UMDB.MotorAckData30);
-            int version4 = getIntUmdbValue(data, UMDB.MotorAckData31);
-            Log.i(TAG, version3 + " : " + version4);
-            if (getIntUmdbValue(data, UMDB.MotorAckData26) == '0' &&
-                    getIntUmdbValue(data, UMDB.MotorAckData27) == '4') {
-                version = "00";
+            Log.d(TAG, "======>MotorAckData32 back");
+            int version3 = getUMDBValue(data, UMDB.MotorAckData30);
+            int version4 = getUMDBValue(data, UMDB.MotorAckData31);
+            Log.i(TAG, "--------------------->version: " + version3 + "   " + version4);
+            version = "00";
+            if (version3 == 0) {
+                version += "0";
+            } else {
                 version += String.valueOf((char) version3);
+            }
+            if (version4 == 0) {
+                version += "0";
+            } else {
                 version += String.valueOf((char) version4);
             }
         }
 
         if (!TextUtils.isEmpty(data.getValue(UMDB.MotorAckData42))) {
-            Log.d(TAG, "MotorAckData42 back");
+            Log.d(TAG, "======>MotorAckData42 back");
             //电压
-            int highVoltage = getIntUmdbValue(data, UMDB.MotorAckData34);
-            int lowVoltage = getIntUmdbValue(data, UMDB.MotorAckData35);
+            int highVoltage = getUMDBValue(data, UMDB.MotorAckData34);
+            int lowVoltage = getUMDBValue(data, UMDB.MotorAckData35);
             voltage = ascToHex(highVoltage, lowVoltage);
             voltage = voltage * 2;
 
-            int highPower = getIntUmdbValue(data, UMDB.MotorAckData38);
-            int lowPower = getIntUmdbValue(data, UMDB.MotorAckData39);
+            int highPower = getUMDBValue(data, UMDB.MotorAckData38);
+            int lowPower = getUMDBValue(data, UMDB.MotorAckData39);
+            if (highPower > 80) {
+                highPower = 48;
+            }
+
             //功率
             power = ascToHex(highPower, lowPower);
             power = power * 32;
+//            Log.i(TAG, "--------------->power: " + highPower + "  " + lowPower);
+//            Log.i(TAG, "--------------->power: " + power);
+        }
+
+        if (!TextUtils.isEmpty(data.getValue(UMDB.MotorAckData59))) {
+            int temp1 = getUMDBValue(data, UMDB.MotorAckData57);
+            int temp2 = getUMDBValue(data, UMDB.MotorAckData58);
+            temperature = ascToHex(temp1, temp2);
+
+            Log.i(TAG, "--------------->temperature: " + temp1 + "  " + temp2 + "  " + temperature);
         }
 
         if (voltage != null && voltage != 0) {
@@ -117,7 +136,9 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
         if (rpm != null) {
             rpmChange(rpm + "");
         }
-        temperatureChange(temperature + " ℃");
+        if (temperature != null) {
+            temperatureChange(25 + " ℃");
+        }
         if (voltage != null) {
             voltageChange(voltage + "V");
         }
@@ -128,17 +149,13 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
             powerChange(power + "W");
 //            }
         }
-        if (electricity != null) {
-//            if (getCurrentCmd().isShowMaxPower()){
-//                electricityChange(df.format(maxEle) + "A 最大");
-//            }else {
-            electricityChange(df.format(electricity) + "A");
-//            }
-        }
+
+        electricityChange(df.format(electricity) + "A");
 
         if (version != null) {
             versionChange(version + "");
         }
+
         ProtocolCmd protocolCmd = getCurrentCmd();
         if (protocolCmd.isCheckRpm()) {
             if (rpm != null && rpm > protocolCmd.getMaxRpm()) {
@@ -175,20 +192,19 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
         }
 
         if (protocolCmd.isCheckElectricity()) {
-            if (electricity != null) {
-                if (electricity > protocolCmd.getMaxElectricity()) {
-                    if (mProtocolListener != null) {
-                        mProtocolListener.onError(true, "电流过高");
-                    }
+
+            if (electricity > protocolCmd.getMaxElectricity()) {
+                if (mProtocolListener != null) {
+                    mProtocolListener.onError(true, "电流过高");
                 }
             }
+
         }
 
-        if (electricity != null) {
-            if (electricity > mCheckResponse.getElectricity()) {
-                mCheckResponse.setElectricity(electricity);
-            }
+        if (electricity > mCheckResponse.getElectricity()) {
+            mCheckResponse.setElectricity(electricity);
         }
+
 
         if (power != null) {
             if (power > mCheckResponse.getPower()) {
@@ -214,7 +230,7 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
 
     @Override
     public void start() {
-        TransmatterLogic.getTransmatterLogic().getTransmitter().write(mModel.getVersionCmd(), 9);
+//        TransmatterLogic.getTransmatterLogic().getTransmitter().write(mModel.getVersionCmd(), 9);
         super.start();
     }
 
@@ -223,26 +239,26 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
         //rpm 电压 功率 电流
         ConfigLogic logic = new ConfigLogic();
         TesterEntity config = logic.loadConfig();
-        int minVoltage = StringUtils.parseInteger(config.getMinVoltage());
-        int maxVoltage = StringUtils.parseInteger(config.getMaxVoltage());
-        int minElectricity = StringUtils.parseInteger(config.getMinElectricity());
-        int maxElectricity = StringUtils.parseInteger(config.getMaxElectricity());
-        int minLowerPower = StringUtils.parseInteger(config.getMinLowerPower());
-        int maxLowerPower = StringUtils.parseInteger(config.getMaxLowerPower());
-        int minHigherPower = StringUtils.parseInteger(config.getMinHigherPower());
-        int maxHigherPower = StringUtils.parseInteger(config.getMaxHigherPower());
-        int minTemperature = StringUtils.parseInteger(config.getMinTemperature());
-        int maxTemperature = StringUtils.parseInteger(config.getMaxTemperature());
+//        int minVoltage = StringUtils.parseInteger(config.getMinVoltage());
+//        int maxVoltage = StringUtils.parseInteger(config.getMaxVoltage());
+//        int minElectricity = StringUtils.parseInteger(config.getMinElectricity());
+//        int maxElectricity = StringUtils.parseInteger(config.getMaxElectricity());
+//        int minLowerPower = StringUtils.parseInteger(config.getMinLowerPower());
+//        int maxLowerPower = StringUtils.parseInteger(config.getMaxLowerPower());
+//        int minHigherPower = StringUtils.parseInteger(config.getMinHigherPower());
+//        int maxHigherPower = StringUtils.parseInteger(config.getMaxHigherPower());
+//        int minTemperature = StringUtils.parseInteger(config.getMinTemperature());
+//        int maxTemperature = StringUtils.parseInteger(config.getMaxTemperature());
 
         List<ProtocolCmd> list = new ArrayList<>();
         ProtocolCmd cmd;
 
         //前1s发送设定状态指令
-        cmd = new ProtocolCmd("前1s发送设定状态指令", mModel.getRatioCmd(), 1000, false, 0, 0, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.NONE);
+        cmd = new ProtocolCmd("前1s发送设定状态指令", mModel.getPMT(), 1000, false, 0, 0, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.NONE);
         list.add(cmd);
 
         //查版本
-        cmd = new ProtocolCmd("查版本", mModel.getSetTemperatureCmd(), 1000, false, 0, 0, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.NONE);
+        cmd = new ProtocolCmd("查版本", mModel.getPMB(), 1000, false, 0, 0, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.NONE);
         list.add(cmd);
 
         //查询状态指令 m
@@ -250,7 +266,7 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
         list.add(cmd);
 
         //洗涤正转
-        cmd = new ProtocolCmd("洗涤正转", mModel.getWashCWCmd(), 1000, false, 55, 100, false, 200, 245, false, 0, 5, false, 0, 5, ProtocolCmd.CW);
+        cmd = new ProtocolCmd("洗涤正转", mModel.getWashCCWCmd(), 1000, false, 55, 100, false, 200, 245, false, 0, 5, false, 0, 5, ProtocolCmd.CW);
         cmd.setRmpNeedZero(true);
         list.add(cmd);
 
@@ -275,65 +291,6 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
         cmd.setCircleDirect(ProtocolCmd.NONE);
         list.add(cmd);
 
-//        //洗涤反转
-//        cmd = new ProtocolCmd("洗涤反转", mModel.getWashCCWCmd(), 1000, false, 55, 100, false, 200, 245, false, 0, 5, false, 0, 5, ProtocolCmd.CCW);
-//        cmd.setRmpNeedZero(true);
-//        list.add(cmd);
-//
-//
-//        for (int i = 0; i < 40; i++) {
-//            if (i % 2 == 0) {
-//                //查询状态指令 i 查询转速
-//                cmd = new ProtocolCmd("查询状态指令-i", mModel.getFetchStatusI(), 1000, true, 0, 850, false, minVoltage, maxVoltage, false, minLowerPower, maxLowerPower, false, minElectricity, maxElectricity, ProtocolCmd.CCW);
-//                list.add(cmd);
-//            } else {
-//                //查询状态指令 m 查询电压,电流,功率
-//                cmd = new ProtocolCmd("查询状态指令-m", mModel.getFetchStatusM(), 1000, false, 0, 0, true, minVoltage, maxVoltage, false, 0, 5, false, minElectricity, maxElectricity, ProtocolCmd.CCW);
-//                list.add(cmd);
-//            }
-//        }
-
-
-//        cmd = new ProtocolCmd("查询状态指令-i", mModel.getFetchStatusI(), 30000, true, 700, 850, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.CCW);
-//        list.add(cmd);
-//
-//        cmd = new ProtocolCmd("查询状态指令-m", mModel.getFetchStatusM(), 700, false, 0, 0, true, minVoltage, maxVoltage, false, 0, 0, false, 0, 0, ProtocolCmd.CCW);
-//        list.add(cmd);
-//
-//        cmd = new ProtocolCmd("查询状态指令-i", mModel.getFetchStatusI(), 700, false, 0, 0, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.CCW);
-//        list.add(cmd);
-
-
-//        //停止
-//        cmd = new ProtocolCmd();
-//        cmd.setName("停止6s");
-//        cmd.setUmdb(mModel.getPauseCmd());
-//        cmd.setTime(6000);
-//        cmd.setCircleDirect(ProtocolCmd.NONE);
-//        cmd.setShowMaxPower(true);
-//        list.add(cmd);
-
-//        //脱水检测
-//        cmd = new ProtocolCmd("脱水检测", mModel.getSpinCmd(), 1000, false, 380, 500, false, 200, 245, false, 0, 5, false, 0, 5, ProtocolCmd.CCW);
-//        cmd.setRmpNeedZero(true);
-//        list.add(cmd);
-//
-////        //===add
-////        //查询状态指令 i
-////        cmd = new ProtocolCmd("查询状态指令-i", mModel.getFetchStatusI(), 15000, true, 350, 500, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.CCW);
-////        list.add(cmd);
-//        for(int i=0; i<20; i++) {
-//            if(i%2==0) {
-//                //查询状态指令 i
-//                cmd = new ProtocolCmd("查询状态指令-i", mModel.getFetchStatusI(), 700, false, 55, 150, false, 0, 0, false, 0, 0, false, 0, 0, ProtocolCmd.CCW);
-//                list.add(cmd);
-//            }else {
-//                //查询状态指令 m
-//                cmd = new ProtocolCmd("查询状态指令-m", mModel.getFetchStatusM(), 700, false, 0, 0, false, 200, 245, false, 0, 5, false, 0, 0, ProtocolCmd.CCW);
-//                list.add(cmd);
-//            }
-//        }
-
         return list;
 
     }
@@ -350,7 +307,7 @@ public class GalanzProtocolLogic extends BaseProtocolCmdLogic {
 
     @Override
     protected void initModel() {
-        mModel = new GalanzModel();
+        mModel = new WeiLiModel();
     }
 
     @Override

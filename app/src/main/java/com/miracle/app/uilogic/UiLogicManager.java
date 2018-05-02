@@ -7,6 +7,7 @@ import com.miracle.app.config.BrandConfig;
 import com.miracle.app.config.WasherConfig;
 import com.miracle.app.uilogic.galanz.GalanzUiLogic;
 import com.miracle.app.uilogic.jide.JiDeUiLogic;
+import com.miracle.app.uilogic.weili.WeiLiUiLogic;
 import com.miracle.app.uilogic.wolong.WolongUiLogic;
 
 
@@ -44,6 +45,8 @@ public class UiLogicManager {
             return new WolongUiLogic(activity);
         } else if (WasherConfig.getWasherConfig().getMotorBrand().equals(BrandConfig.MODEL_JIDE)) {
             return new JiDeUiLogic(activity);
+        } else if (WasherConfig.getWasherConfig().getMotorBrand().equals(BrandConfig.MODEL_WEILI)) {
+            return new WeiLiUiLogic(activity);
         }
         return null;
     }

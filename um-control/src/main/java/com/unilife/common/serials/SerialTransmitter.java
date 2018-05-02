@@ -70,7 +70,11 @@ public class SerialTransmitter {
 		m_simulate = simulate;
 		if (!simulate) {
 			comPort = new jniSERIAL();
-			comPort.init(comPort, bautrate, bits, (char)cparity, stop);
+			if (comPort.no_serial_lib) {
+//                m_simulate = true;
+			} else {
+				comPort.init(comPort, bautrate, bits, (char) cparity, stop);
+			}
 		}
 
 		return 0;

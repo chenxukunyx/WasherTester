@@ -58,7 +58,7 @@ public class ExcelUtils {
             int col = sheet.getColumns();
             for (int i = 1; i < rows; i++) {
                 key = sheet.getCell(0, i).getContents();
-                value = StringUtils.parseInteger(sheet.getCell(1, i).getContents());
+                value = Float.parseFloat(sheet.getCell(1, i).getContents());
                 if (key.equals(WasherConstants.Tambient)) {
                     entity.setTambient(value);
                 } else if (key.equals(WasherConstants.SW_Version)) {

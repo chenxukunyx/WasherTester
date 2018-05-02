@@ -31,8 +31,9 @@ public class WasherConfig extends BaseWasherConfig {
         mWasherConfigList.add(new WolongWasherConfig());
         mWasherConfigList.add(new GalanzWasherConfig());
         mWasherConfigList.add(new JiDeWasherConfig());
+        mWasherConfigList.add(new WeiLiWasherConfig());
 
-        setWasherConfig(BrandConfig.MODEL_WOLONG);
+        setWasherConfig(BrandConfig.MODEL_WEILI);
     }
 
     /**

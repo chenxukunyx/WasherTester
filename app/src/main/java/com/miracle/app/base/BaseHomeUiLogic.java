@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.miracle.app.R;
 import com.miracle.app.ui.SettingActivity;
+import com.miracle.um_base_common.base.BaseUiLogicImpl;
 import com.unilife.common.uilogic.UMBaseUiLogic;
 
 
@@ -16,6 +17,7 @@ import com.unilife.common.uilogic.UMBaseUiLogic;
 public abstract class BaseHomeUiLogic extends UMBaseUiLogic {
 
     private ImageView setting;
+    protected BaseUiLogicImpl mUiLogicImpl;
 
     public BaseHomeUiLogic(Activity activity) {
         super(activity);
