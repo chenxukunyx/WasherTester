@@ -1,10 +1,12 @@
 package com.miracle.app.uilogic.wolong;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.miracle.app.R;
@@ -46,17 +48,24 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     private Button mBtnStop;
     private RotateImageView mRotateImageView;
     private TextView mTipTextView;
+    private Button btn_back;
+
+    private RelativeLayout step_first, step_second;
+    private Button btn_pass, btn_fail;
 
     private LinearLayout mLlCycle;
     private EditText mEtCwSpeed;
     private EditText mEtCwTime;
     private EditText mEtCcwSpeed;
     private EditText mEtCcwTime;
+    private EditText mEtStableSpeed1, mEtStableSpeed2;
 
-    private static final String CWSPEED  = "CWSPEED";
-    private static final String CWTIME  = "CWTIME";
-    private static final String CCWSPEED  = "CCWSPEED";
-    private static final String CCWTIME  = "CCWTIME";
+    private static final String CWSPEED = "CWSPEED";
+    private static final String CWTIME = "CWTIME";
+    private static final String CCWSPEED = "CCWSPEED";
+    private static final String CCWTIME = "CCWTIME";
+    private static final String STABLESPEED1 = "STABLESPEED1";
+    private static final String STABLESPEED2 = "STABLESPEED2";
 
     private static final int NORMAL = 0x01;
     private static final int SPECIAL = 0x02;
@@ -67,6 +76,14 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         initView();
         mWolongUiLogicImpl = new WolongUiLogicImpl(activity, mRotateImageView);
         initEvent();
+        String startType = getIntent().getStringExtra("startType");
+        if (startType.equals("broad")) {
+            normal();
+            step(1);
+        } else {
+            step(2);
+            special();
+        }
     }
 
     private void initView() {
@@ -88,16 +105,35 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         mBtnStop = findViewById(R.id.btn_stop);
         mRotateImageView = findViewById(R.id.rotateImageView);
         mTipTextView = findViewById(R.id.tipTextView);
+        btn_back = findViewById(R.id.btn_back);
 
         mLlCycle = findViewById(R.id.ll_cycle);
         mEtCwSpeed = findViewById(R.id.et_cw_speed);
         mEtCwTime = findViewById(R.id.et_cw_time);
         mEtCcwSpeed = findViewById(R.id.et_ccw_speed);
         mEtCcwTime = findViewById(R.id.et_ccw_time);
+        mEtStableSpeed1 = findViewById(R.id.et_stable_speed_1);
+        mEtStableSpeed2 = findViewById(R.id.et_stable_speed_2);
         mEtCwSpeed.setText(SharedPrefUtils.getData(CWSPEED, 200) + "");
         mEtCwTime.setText(SharedPrefUtils.getData(CWTIME, 20) + "");
         mEtCcwSpeed.setText(SharedPrefUtils.getData(CCWSPEED, 200) + "");
         mEtCcwTime.setText(SharedPrefUtils.getData(CCWTIME, 20) + "");
+        mEtStableSpeed1.setText(SharedPrefUtils.getData(STABLESPEED1, 10000) + "");
+        mEtStableSpeed2.setText(SharedPrefUtils.getData(STABLESPEED1, 16000) + "");
+
+        step_first = findViewById(R.id.step_first);
+        step_second = findViewById(R.id.step_second);
+        step(1);
+
+        btn_pass = findViewById(R.id.btn_pass);
+        btn_fail = findViewById(R.id.btn_failed);
+        btn_pass.setOnClickListener(this);
+        btn_fail.setOnClickListener(this);
+    }
+
+    private void step(int step) {
+        step_first.setVisibility(step == 1 ? View.VISIBLE : View.GONE);
+        step_second.setVisibility(step == 2 ? View.VISIBLE : View.GONE);
     }
 
     private void initEvent() {
@@ -110,6 +146,7 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         mBtnCycle.setOnClickListener(this);
         mBtnStop.setOnClickListener(this);
         mWolongUiLogicImpl.setOnNewUmdbListener(this);
+        btn_back.setOnClickListener(this);
     }
 
     @Override
@@ -127,10 +164,26 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
                 normal();
                 break;
             case R.id.btn_10000:
-                start(10000, WolongUiLogicImpl.SPECIAL);
+                int stable1 = StringUtils.parseInt(mEtStableSpeed1.getText().toString().trim());
+                if (stable1 <= 0) {
+                    stable1 = 200;
+                }
+                if (stable1 > 16800) {
+                    stable1 = 16800;
+                }
+                SharedPrefUtils.saveData(STABLESPEED1, stable1);
+                start(stable1, WolongUiLogicImpl.SPECIAL);
                 break;
             case R.id.btn_16000:
-                start(16000, WolongUiLogicImpl.SPECIAL);
+                int stable2 = StringUtils.parseInt(mEtStableSpeed2.getText().toString().trim());
+                if (stable2 <= 0) {
+                    stable2 = 200;
+                }
+                if (stable2 > 16800) {
+                    stable2 = 16800;
+                }
+                SharedPrefUtils.saveData(STABLESPEED2, stable2);
+                start(stable2, WolongUiLogicImpl.SPECIAL);
                 break;
             case R.id.btn_ccw:
                 start(-16000, WolongUiLogicImpl.NORMAL);
@@ -146,6 +199,18 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
                     mWolongUiLogicImpl.setNormalState(true);
                 }
                 stop();
+                break;
+            case R.id.btn_back:
+                stop();
+                getActivity().finish();
+                break;
+            case R.id.btn_pass:
+                mWolongUiLogicImpl.lowVoltageCheckResult(true);
+                step(2);
+                break;
+            case R.id.btn_failed:
+                mWolongUiLogicImpl.lowVoltageCheckResult(false);
+                step(2);
                 break;
         }
     }

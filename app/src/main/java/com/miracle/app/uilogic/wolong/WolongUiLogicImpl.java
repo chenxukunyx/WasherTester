@@ -42,8 +42,11 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
     private CheckResultEntity mCheckResultEntity;
     private boolean mNormalState;
     private String mStep = "";
+    private String padComRrr;
 
     DecimalFormat mFormat = new DecimalFormat("0.0");
+
+    private boolean lowVoltageResult;
 
     private List<Parameters> mParametersLowList = new ArrayList<>();
     private List<Parameters> mParametersHighList = new ArrayList<>();
@@ -59,6 +62,8 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
 
     @Override
     public void onNewUmdbData(UMDB db) {
+        padComRrr = db.getDb().get(UMDB.PadCommErr);
+        Log.i("padComRrr", "padComRrr: " + padComRrr);
         String version = "";
         Integer voltage = null;
         Float ele = null;
@@ -66,6 +71,12 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         Integer rpm = null;
         Integer temperature = null;
         Integer faultCode = null;
+        if (padComRrr.equals("1")) {
+            if (mOnNewUmdbListener != null) {
+                mOnNewUmdbListener.onError("通讯失败");
+            }
+        }
+
         if (db.containValue(UMDB.SoftwareVersion_A1) && !TextUtils.isEmpty(db.getValue(UMDB.SoftwareVersion_A1))) {
             int val = db.getIntegerValue(UMDB.SoftwareVersion_A1);
             int high = val & 0xff;
@@ -216,8 +227,11 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         UMTimer.getInstance().stopTimer(TIMER_CCW);
         UMTimer.getInstance().stopTimer(TIMER_STOP);
         if (mNormalState) {
-            CheckResultDialog dialog = new CheckResultDialog(mActivity, mCheckResultEntity);
-            dialog.show();
+            if (!padComRrr.equals("1")) {
+                mCheckResultEntity.setLowVoltageConfirm(lowVoltageResult);
+                CheckResultDialog dialog = new CheckResultDialog(mActivity, mCheckResultEntity);
+                dialog.show();
+            }
         }
     }
 
@@ -298,5 +312,9 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         public void setTemp(int temp) {
             this.temp = temp;
         }
+    }
+
+    public void lowVoltageCheckResult(boolean result) {
+        lowVoltageResult = result;
     }
 }

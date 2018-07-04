@@ -21,7 +21,7 @@ public class WolongWasherConfig extends BaseWasherConfig {
     public WolongWasherConfig() {
         setMotorBrand(BrandConfig.MODEL_WOLONG);
         setBrandChinese(BrandConfig.MODEL_WOLONG_CHINESE);
-        setLayoutId(R.layout.activity_main_wolong);
+        setLayoutId(R.layout.activity_main_bldc);
         setSerialConfig(new WolongSerialConfig());
 
         setM_serialProtocol(WolongProtocol.class);

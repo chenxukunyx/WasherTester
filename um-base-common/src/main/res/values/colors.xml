@@ -9,4 +9,6 @@
     <color name="tip_border">#F5F5F5</color>
     <color name="tip_text_color">#000000</color>
     <color name="black">#000</color>
+    <color name="line_color">#335F8A</color>
+    <color name="ring_color">#8CB6DF</color>
 </resources>

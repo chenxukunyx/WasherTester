@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--步骤一start-->
+    <RelativeLayout
+        android:id="@+id/step_first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_color"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="步骤一：低压确认"
+            android:textColor="@color/white"
+            android:textSize="37px"/>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="名称"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="下限"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="额定"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="上限"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="15V"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="13.5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="15"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="16.5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="5V"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="4.75"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="3.3V"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="2.97"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="3.3"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px35"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="240dp"
+            android:text="SN：XXXXXXXXXXXX"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px37"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp">
+
+            <Button
+                android:id="@+id/btn_pass"
+                android:layout_width="130dp"
+                android:layout_height="70dp"
+                android:text="通过"
+                android:textColor="@color/black"
+                android:textSize="@dimen/px30"/>
+
+            <Button
+                android:id="@+id/btn_failed"
+                android:layout_width="130dp"
+                android:layout_height="70dp"
+                android:layout_below="@id/btn_pass"
+                android:layout_marginTop="10dp"
+                android:text="失败"
+                android:textColor="@color/black"
+                android:textSize="@dimen/px30"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <!--步骤一end-->
+
+    <!--步骤二start-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_color"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="步骤二：通讯 软件版本 IPM低温"
+            android:textColor="@color/white"
+            android:textSize="37px"/>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="240dp"
+            android:text="SN：XXXXXXXXXXXX"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px37"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp">
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <!--步骤一end-->
+
+    <RelativeLayout
+        android:id="@+id/step_second"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_color"
+        android:visibility="gone">
+
+        <!--voltage-->
+        <LinearLayout
+            android:id="@+id/ll_voltage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电压 /V"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px42"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/voltage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px28"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!--ele-->
+        <LinearLayout
+            android:id="@+id/ll_ele"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_voltage"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电流 /A"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px42"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/electricity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px28"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!--power-->
+        <LinearLayout
+            android:id="@+id/ll_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_ele"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="功率 /W"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px42"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px28"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!--version-->
+        <LinearLayout
+            android:id="@+id/ll_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="120dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px42"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px28"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!--temperature-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/ll_version"
+            android:layout_marginRight="120dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温度 /℃"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px42"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px28"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <com.miracle.um_base_common.view.CircleView
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"/>
+
+        <com.miracle.um_base_common.view.RotateImageView
+            android:id="@+id/rotateImageView"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电机转速"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+
+            <TextView
+                android:id="@+id/rpm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="RPM"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px40"/>
+        </LinearLayout>
+
+        <!--底部按钮-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/px12">
+
+            <!--normal-->
+            <LinearLayout
+                android:id="@+id/ll_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <Button
+                    android:id="@+id/btn_special"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:background="@drawable/shape_special_btn_bg"
+                    android:text="special"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btn_cw"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:layout_marginLeft="@dimen/px10"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="CW"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"/>
+
+                <Button
+                    android:id="@+id/btn_ccw"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:layout_marginLeft="@dimen/px10"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="CCW"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"/>
+
+            </LinearLayout>
+
+            <!--special-->
+            <LinearLayout
+                android:id="@+id/ll_special"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/px12"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+
+
+                <Button
+                    android:id="@+id/btn_normal"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:background="@drawable/shape_special_btn_bg"
+                    android:text="Normal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="返回"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"/>
+
+                <Button
+                    android:id="@+id/btn_10000"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:layout_marginLeft="@dimen/px50"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="定转速1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"/>
+
+                <Button
+                    android:id="@+id/btn_16000"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:layout_marginLeft="@dimen/px10"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="定转速2"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"/>
+
+                <Button
+                    android:id="@+id/btn_cycle"
+                    android:layout_width="@dimen/px88"
+                    android:layout_height="@dimen/px88"
+                    android:layout_marginLeft="@dimen/px10"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="Cycle"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/px20"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_stop"
+                android:layout_width="@dimen/px88"
+                android:layout_height="@dimen/px88"
+                android:layout_marginLeft="@dimen/px10"
+                android:background="@drawable/bg_btn_nofocus"
+                android:text="stop"
+                android:textColor="@color/black"
+                android:textSize="@dimen/px20"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_cycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px20"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_cw_time"
+                    android:layout_width="@dimen/px150"
+                    android:layout_height="@dimen/px60"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px26"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正转时间"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px30"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_ccw_time"
+                    android:layout_width="@dimen/px150"
+                    android:layout_height="@dimen/px60"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px26"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反转时间"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px30"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_cw_speed"
+                    android:layout_width="@dimen/px150"
+                    android:layout_height="@dimen/px60"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px26"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正转速度"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px30"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_ccw_speed"
+                    android:layout_width="@dimen/px150"
+                    android:layout_height="@dimen/px60"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px26"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反转速度"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px30"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_stable_speed_1"
+                    android:layout_width="@dimen/px150"
+                    android:layout_height="@dimen/px60"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px26"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="定转速1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px30"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/et_stable_speed_2"
+                    android:layout_width="@dimen/px150"
+                    android:layout_height="@dimen/px60"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px26"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="定转速2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px30"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tipTextView"
+            android:layout_width="280dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px20"
+            android:background="@drawable/shape_tip_bg"
+            android:gravity="center"
+            android:textColor="@color/tip_text_color"
+            android:textSize="@dimen/px30"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</RelativeLayout>

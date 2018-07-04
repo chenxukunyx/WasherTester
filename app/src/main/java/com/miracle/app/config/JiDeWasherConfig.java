@@ -25,7 +25,7 @@ public class JiDeWasherConfig extends BaseWasherConfig {
     public JiDeWasherConfig() {
         setMotorBrand(BrandConfig.MODEL_JIDE);
         setBrandChinese(BrandConfig.MODEL_JIDE_CHINESE);
-        setLayoutId(R.layout.activity_main_wolong);
+        setLayoutId(R.layout.activity_main_bldc);
         setSerialConfig(new JiDeSerialConfig());
         setM_serialProtocol(JiDeProtocol.class);
         setM_clsSendProtocol(JiDeSendProtocol.class);

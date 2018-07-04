@@ -20,6 +20,7 @@ public class CheckResultEntity {
     private float tempAmbient;
     private float tempHiSpeed;
     private int errorCode;
+    private boolean lowVoltageConfirm;
 
     public String getVersion() {
         return version;
@@ -114,5 +115,13 @@ public class CheckResultEntity {
 
     public void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
+    }
+
+    public boolean isLowVoltageConfirm() {
+        return lowVoltageConfirm;
+    }
+
+    public void setLowVoltageConfirm(boolean lowVoltageConfirm) {
+        this.lowVoltageConfirm = lowVoltageConfirm;
     }
 }

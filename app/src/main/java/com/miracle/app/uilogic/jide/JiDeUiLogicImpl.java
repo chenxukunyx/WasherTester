@@ -37,6 +37,8 @@ public class JiDeUiLogicImpl extends BaseUiLogicImpl {
     private Handler mHandler = new Handler();
     private int mDirect;
 
+    private boolean lowVoltageResult;
+
     DecimalFormat mFormat = new DecimalFormat("0.0");
 
     public JiDeUiLogicImpl(Activity activity, RotateImageView rotateImageView) {
@@ -204,5 +206,9 @@ public class JiDeUiLogicImpl extends BaseUiLogicImpl {
 
     private int getUMDBValue(UMDB db, String key) {
         return (int) (db.getIntValue(key) & 0x7f);
+    }
+
+    public void lowVoltageCheckResult(boolean result) {
+        lowVoltageResult = result;
     }
 }

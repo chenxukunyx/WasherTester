@@ -17,7 +17,7 @@ public class GalanzSerialConfig extends SerialConfig {
         m_bateRate = 4800;
         m_isParity = 2;// 'e'; 奇偶校验
         m_stopBit = 1;//停止位
-        m_bitWidth = 8;
+        m_bitWidth = 9;
         m_circleTime = 300;
         m_rwGapTime = 100;
         m_hostOrSlave = 1;

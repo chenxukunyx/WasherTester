@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_color">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:text="BLDC变频FCT测试"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_pn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="P/N : "
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BDxxxxxx"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_operation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_pn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp">
+
+        <RadioGroup
+            android:id="@+id/rg_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/rbtn_broad"
+                android:layout_width="130dp"
+                android:layout_height="70dp"
+                android:background="@drawable/selector_togglebutton_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="变频板"
+                android:checked="true"
+                android:textColor="@color/black"
+                android:textSize="25sp"/>
+
+            <RadioButton
+                android:id="@+id/rbtn_motor"
+                android:layout_width="130dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/selector_togglebutton_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="电机"
+                android:textColor="@color/black"
+                android:textSize="25sp"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/ll_operation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_button_bg"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:text="上海绿联软件股份有限公司"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"/>
+</RelativeLayout>

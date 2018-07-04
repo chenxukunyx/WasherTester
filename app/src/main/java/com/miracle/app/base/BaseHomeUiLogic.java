@@ -19,8 +19,12 @@ public abstract class BaseHomeUiLogic extends UMBaseUiLogic {
     private ImageView setting;
     protected BaseUiLogicImpl mUiLogicImpl;
 
+    private Intent mIntent;
+
     public BaseHomeUiLogic(Activity activity) {
         super(activity);
+        mActivity = activity;
+        mIntent = activity.getIntent();
         setting = findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +39,15 @@ public abstract class BaseHomeUiLogic extends UMBaseUiLogic {
     }
 
     public void release() {
+        mActivity = null;
         super.release();
+    }
+
+    protected Intent getIntent() {
+        return mIntent;
+    }
+
+    protected Activity getActivity() {
+        return mActivity;
     }
 }

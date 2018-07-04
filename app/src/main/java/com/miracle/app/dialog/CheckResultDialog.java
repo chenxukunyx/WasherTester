@@ -28,6 +28,7 @@ import java.text.DecimalFormat;
 public class CheckResultDialog extends Dialog {
 
     private RelativeLayout mRlDialog;
+    private TextView m_tv_15_voltage, m_tv_5_voltage;
     private TextView mTvConfigVersion;
     private TextView mTvFtcVersion;
     private TextView mTvVersionResult;
@@ -97,6 +98,8 @@ public class CheckResultDialog extends Dialog {
 
     private void initView() {
         mRlDialog = (RelativeLayout) findViewById(R.id.rl_dialog);
+        m_tv_15_voltage = (TextView) findViewById(R.id.tv_low_15_result);
+        m_tv_5_voltage = (TextView) findViewById(R.id.tv_low_5_result);
         mTvConfigVersion = (TextView) findViewById(R.id.tv_config_version);
         mTvFtcVersion = (TextView) findViewById(R.id.tv_ftc_version);
         mTvVersionResult = (TextView) findViewById(R.id.tv_version_result);
@@ -151,6 +154,9 @@ public class CheckResultDialog extends Dialog {
                 dismiss();
             }
         });
+
+        m_tv_15_voltage.setText(mCheckResultEntity.isLowVoltageConfirm() ? "pass" : "fail");
+        m_tv_5_voltage.setText(mCheckResultEntity.isLowVoltageConfirm() ? "pass" : "fail");
         //version
         mTvConfigVersion.setText(mConfigEntity.getSW_Version() + "");
         mTvFtcVersion.setText(mCheckResultEntity.getVersion() + "");
@@ -161,10 +167,10 @@ public class CheckResultDialog extends Dialog {
         }
 
         //voltage
-        mTvCongifLlVoltage.setText((int)mConfigEntity.getUmain_LL() + "");
-        mTvConfigUlVoltage.setText((int)mConfigEntity.getUmain_UL() + "");
-        mTvConfigNormVoltage.setText((int)mConfigEntity.getUmain_norm() + "");
-        mTvFctVoltage.setText((int)mCheckResultEntity.getVoltage() + "");
+        mTvCongifLlVoltage.setText((int) mConfigEntity.getUmain_LL() + "");
+        mTvConfigUlVoltage.setText((int) mConfigEntity.getUmain_UL() + "");
+        mTvConfigNormVoltage.setText((int) mConfigEntity.getUmain_norm() + "");
+        mTvFctVoltage.setText((int) mCheckResultEntity.getVoltage() + "");
         if (mConfigEntity.getUmain_LL() <= mCheckResultEntity.getVoltage() && mConfigEntity.getUmain_UL() >= mCheckResultEntity.getVoltage()) {
             mTvVoltageResult.setText("PASS");
         } else {
@@ -172,10 +178,10 @@ public class CheckResultDialog extends Dialog {
         }
 
         //high speed
-        mTvConfigLlHighSpeed.setText((int)(mConfigEntity.getHigh_Speed() - 200) + "");
-        mTvConfigHighSpeed.setText((int)mConfigEntity.getHigh_Speed() + "");
-        mTvConfigUlHighSpeed.setText((int)(mConfigEntity.getHigh_Speed() + 200) + "");
-        mTvFtcHighSpeed.setText((int)mCheckResultEntity.getSpeed() + "");
+        mTvConfigLlHighSpeed.setText((int) (mConfigEntity.getHigh_Speed() - 200) + "");
+        mTvConfigHighSpeed.setText((int) mConfigEntity.getHigh_Speed() + "");
+        mTvConfigUlHighSpeed.setText((int) (mConfigEntity.getHigh_Speed() + 200) + "");
+        mTvFtcHighSpeed.setText((int) mCheckResultEntity.getSpeed() + "");
         if ((mConfigEntity.getHigh_Speed() - 200) <= mCheckResultEntity.getSpeed() && (mConfigEntity.getHigh_Speed() + 200) >= mCheckResultEntity.getVoltage()) {
             mTvHighSpeedResult.setText("PASS");
         } else {
@@ -247,10 +253,10 @@ public class CheckResultDialog extends Dialog {
 //        }
 
         //temp ambient
-        mTvConfigLlTempAmbient.setText((int)mConfigEntity.getT_LL_ambient() + "");
-        mTvConfigNormTempAmbient.setText((int)mConfigEntity.getT_ambient() + "");
-        mTvConfigUlTempAmbient.setText((int)mConfigEntity.getT_UL_ambient() + "");
-        mTvFtcTempAmbient.setText((int)mCheckResultEntity.getTempAmbient() + "");
+        mTvConfigLlTempAmbient.setText((int) mConfigEntity.getT_LL_ambient() + "");
+        mTvConfigNormTempAmbient.setText((int) mConfigEntity.getT_ambient() + "");
+        mTvConfigUlTempAmbient.setText((int) mConfigEntity.getT_UL_ambient() + "");
+        mTvFtcTempAmbient.setText((int) mCheckResultEntity.getTempAmbient() + "");
         if (mConfigEntity.getT_LL_ambient() <= mCheckResultEntity.getTempAmbient() && mConfigEntity.getT_UL_ambient() >= mCheckResultEntity.getTempAmbient()) {
             mTvTempAmbientResult.setText("PASS");
         } else {
@@ -258,10 +264,10 @@ public class CheckResultDialog extends Dialog {
         }
 
         //temp high speed
-        mTvConfigLlTempHiSpeed.setText((int)mConfigEntity.getT_LL_hi_speed() + "");
-        mTvConfigNormalTempHiSpeed.setText((int)mConfigEntity.getT_hi_speed() + "");
-        mTvConfigUlTempHiSpeed.setText((int)mConfigEntity.getT_UL_hi_speed() + "");
-        mTvFtcTempHiSpeed.setText((int)mCheckResultEntity.getTempHiSpeed() + "");
+        mTvConfigLlTempHiSpeed.setText((int) mConfigEntity.getT_LL_hi_speed() + "");
+        mTvConfigNormalTempHiSpeed.setText((int) mConfigEntity.getT_hi_speed() + "");
+        mTvConfigUlTempHiSpeed.setText((int) mConfigEntity.getT_UL_hi_speed() + "");
+        mTvFtcTempHiSpeed.setText((int) mCheckResultEntity.getTempHiSpeed() + "");
         if (mConfigEntity.getT_LL_hi_speed() <= mCheckResultEntity.getTempHiSpeed() && mConfigEntity.getT_UL_hi_speed() >= mCheckResultEntity.getTempHiSpeed()) {
             mTvTempHiSpeedResult.setText("PASS");
         } else {
