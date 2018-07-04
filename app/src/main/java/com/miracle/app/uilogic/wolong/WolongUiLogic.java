@@ -46,6 +46,7 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
     private Button mBtn16000;
     private Button mBtnCycle;
     private Button mBtnStop;
+    private Button btn_over;//中止
     private RotateImageView mRotateImageView;
     private TextView mTipTextView;
     private Button btn_back;
@@ -103,6 +104,7 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         mBtn16000 = findViewById(R.id.btn_16000);
         mBtnCycle = findViewById(R.id.btn_cycle);
         mBtnStop = findViewById(R.id.btn_stop);
+        btn_over = findViewById(R.id.btn_over);
         mRotateImageView = findViewById(R.id.rotateImageView);
         mTipTextView = findViewById(R.id.tipTextView);
         btn_back = findViewById(R.id.btn_back);
@@ -145,6 +147,7 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
         mBtnCw.setOnClickListener(this);
         mBtnCycle.setOnClickListener(this);
         mBtnStop.setOnClickListener(this);
+        btn_over.setOnClickListener(this);
         mWolongUiLogicImpl.setOnNewUmdbListener(this);
         btn_back.setOnClickListener(this);
     }
@@ -194,6 +197,12 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
             case R.id.btn_cycle:
                 cycle();
                 break;
+            case R.id.btn_over:
+                if (status == NORMAL) {
+                    mWolongUiLogicImpl.setNormalState(true);
+                }
+                over();
+                break;
             case R.id.btn_stop:
                 if (status == NORMAL) {
                     mWolongUiLogicImpl.setNormalState(true);
@@ -233,6 +242,20 @@ public class WolongUiLogic extends BaseHomeUiLogic implements View.OnClickListen
             }
         });
         mWolongUiLogicImpl.stop();
+    }
+
+    private void over() {
+        UMTimer.getInstance().startTimer("timer_reset_data", 500, 1, new UMTimer.UMTimerOutListener() {
+            @Override
+            public void UMTimeOut(String name) {
+                mVoltage.setText("0 V");
+                mPower.setText("0 W");
+                mTemperature.setText("0 ℃");
+                mVersion.setText("");
+                mElectricity.setText("0 A");
+            }
+        });
+        mWolongUiLogicImpl.over();
     }
 
     private void cycle() {

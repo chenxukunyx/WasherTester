@@ -226,12 +226,14 @@ public class WolongUiLogicImpl extends BaseUiLogicImpl {
         onSendCmd(mModel.getFTCTestCmd(), mRotateImageView, NONE);
         UMTimer.getInstance().stopTimer(TIMER_CCW);
         UMTimer.getInstance().stopTimer(TIMER_STOP);
+    }
+
+    public void over() {
+        stop();
         if (mNormalState) {
-            if (!padComRrr.equals("1")) {
-                mCheckResultEntity.setLowVoltageConfirm(lowVoltageResult);
-                CheckResultDialog dialog = new CheckResultDialog(mActivity, mCheckResultEntity);
-                dialog.show();
-            }
+            mCheckResultEntity.setLowVoltageConfirm(lowVoltageResult);
+            CheckResultDialog dialog = new CheckResultDialog(mActivity, mCheckResultEntity);
+            dialog.show();
         }
     }
 

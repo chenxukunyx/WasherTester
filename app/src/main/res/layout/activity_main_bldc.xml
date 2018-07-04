@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_color"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,8 +20,8 @@
             android:textSize="37px"/>
 
         <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="150dp"
+            android:layout_width="500dp"
+            android:layout_height="250dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
             android:orientation="vertical">
@@ -219,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="390dp"
             android:text="SN：XXXXXXXXXXXX"
             android:textColor="@color/white"
             android:textSize="@dimen/px37"
@@ -309,7 +309,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_color"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <!--voltage-->
         <LinearLayout
@@ -505,17 +505,16 @@
         </LinearLayout>
 
         <!--底部按钮-->
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/px12">
 
             <!--normal-->
             <LinearLayout
                 android:id="@+id/ll_normal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="visible">
@@ -532,34 +531,41 @@
 
                 <Button
                     android:id="@+id/btn_cw"
-                    android:layout_width="@dimen/px88"
-                    android:layout_height="@dimen/px88"
-                    android:layout_marginLeft="@dimen/px10"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="340dp"
                     android:background="@drawable/bg_btn_nofocus"
                     android:text="CW"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/px20"/>
+                    android:textSize="25sp"/>
 
                 <Button
                     android:id="@+id/btn_ccw"
-                    android:layout_width="@dimen/px88"
-                    android:layout_height="@dimen/px88"
-                    android:layout_marginLeft="@dimen/px10"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@drawable/bg_btn_nofocus"
                     android:text="CCW"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/px20"/>
+                    android:textSize="25sp"/>
+
+                <Button
+                    android:id="@+id/btn_over"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="280dp"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="中止"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"/>
 
             </LinearLayout>
 
             <!--special-->
             <LinearLayout
                 android:id="@+id/ll_special"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/px12"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -576,56 +582,57 @@
                     android:visibility="gone"/>
 
                 <Button
-                    android:id="@+id/btn_back"
-                    android:layout_width="@dimen/px88"
-                    android:layout_height="@dimen/px88"
-                    android:background="@drawable/bg_btn_nofocus"
-                    android:text="返回"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/px20"/>
-
-                <Button
                     android:id="@+id/btn_10000"
-                    android:layout_width="@dimen/px88"
-                    android:layout_height="@dimen/px88"
-                    android:layout_marginLeft="@dimen/px50"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="225dp"
                     android:background="@drawable/bg_btn_nofocus"
                     android:text="定转速1"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/px20"/>
+                    android:textSize="25sp"/>
 
                 <Button
                     android:id="@+id/btn_16000"
-                    android:layout_width="@dimen/px88"
-                    android:layout_height="@dimen/px88"
-                    android:layout_marginLeft="@dimen/px10"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@drawable/bg_btn_nofocus"
                     android:text="定转速2"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/px20"/>
+                    android:textSize="25sp"/>
 
                 <Button
                     android:id="@+id/btn_cycle"
-                    android:layout_width="@dimen/px88"
-                    android:layout_height="@dimen/px88"
-                    android:layout_marginLeft="@dimen/px10"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@drawable/bg_btn_nofocus"
                     android:text="Cycle"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/px20"/>
+                    android:textSize="25sp"/>
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="280dp"
+                    android:background="@drawable/bg_btn_nofocus"
+                    android:text="返回"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"/>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btn_stop"
-                android:layout_width="@dimen/px88"
-                android:layout_height="@dimen/px88"
-                android:layout_marginLeft="@dimen/px10"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="570dp"
                 android:background="@drawable/bg_btn_nofocus"
-                android:text="stop"
+                android:text="STOP"
                 android:textColor="@color/black"
-                android:textSize="@dimen/px20"/>
+                android:textSize="25sp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/ll_cycle"
