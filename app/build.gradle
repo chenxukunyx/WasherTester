@@ -9,8 +9,8 @@ android {
         applicationId "com.unilife.sanyangwasher"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode 101011//第一个零为三江版本(1为新安版本)  第二个零代表电机厂商版本
-        versionName "1.0.1.011"//0:galanz 1:wolong
+        versionCode 101016//第一个零为三江版本(1为新安版本)  第二个零代表电机厂商版本
+        versionName "1.0.1.016"//0:galanz 1:wolong
 
     }
 
